@@ -1,12 +1,12 @@
 /*
- * Generates a .docx file from a summarised subject outline
+ * Generates a .ics file from a summarised subject outline
  *
  * @author  Melisa Sachi (11984566)
  * @date    04/10/16
  * @version 1.0
  */
 
-package DocumentGenerator;
+package ICSGenerator;
 
 import SubjectOutlineSummary.SubjectOutlineSummary;
 import SubjectOutlineSummary.Assessment;
@@ -14,19 +14,29 @@ import SubjectOutlineSummary.Date;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 
-import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFRun;
+import java.time.LocalDateTime;
 
 /* Simulates a static class */
-public final class DocGenerator
+public final class ICSGenerator
 {
+    private final static String header = "BEGIN:VCALENDAR\n" +
+                                         "PRODID:-//Subject Outline Summariser\n" +
+                                         "VERSION:2.0\n" +
+                                         "CALSCALE:GREGORIAN\n" +
+                                         "METHOD:PUBLISH\n" +
+                                         "X-WR-CALNAME:SOS Calendar\n" +
+                                         "X-WR-TIMEZONE:Australia/Sydney\n" +
+                                         "X-WR-CALDESC:\n";
+    private final static String footer = "END:VCALENDAR";
+    private final static String eventBegin = "BEGIN:VEVENT\n";
+    private final static String eventEnd = "END:VEVENT\n";
+    
     public static void main(String[] args)
     {
-        Date date0 = new Date(5, 9, 2016);
-        Date date1 = new Date(17, 10, 2016);
+        Date date0 = new Date(2, 11, 2016);
+        Date date1 = new Date(3, 11, 2016);
         
         Assessment[] assessments = new Assessment[3];
         assessments[0] = new Assessment("Assessment task 1: Project - Phase 1: Agile Planning, Analysis and Architecture",
@@ -86,159 +96,107 @@ public final class DocGenerator
                                      null,
                                      "This is a dynamic and practical subject. There is no fixed or single text book for this subject. However, students may choose to buy and consult the relevant recommended books and references.");
         
-        DocGenerator aGenerator = new DocGenerator();
+        ICSGenerator aGenerator = new ICSGenerator();
         
-        GenerateDoc(test);
+        GenerateICS(test, "testfile");
     }
     
-    private DocGenerator()
+    private ICSGenerator()
     {
     }
     
-    ////////// ADD IN FILEPATH & INCLUSION ARGUMENTS LATER ///////////////////////////////////////////////////////////
-    public static boolean GenerateDoc(SubjectOutlineSummary summary)
+    ////////// ADD IN FILEPATH ARGUMENT LATER ///////////////////////////////////////////////////////////
+    public static boolean GenerateICS(SubjectOutlineSummary summary, String filename)
     {
-        XWPFDocument doc = new XWPFDocument();
-        try (FileOutputStream out = new FileOutputStream(new File("testDocument.docx")))
+        try
         {
-            AddHeading(doc, summary.GetSubjectNb() + " " + summary.GetSubjectName());
+            File file = new File(filename + ".ics");
+            if (!file.exists())
+            {
+                file.createNewFile();
+            }
             
-            AddMultipleLines(doc, "Key contacts: ", summary.GetKeyContacts(), true);
-            AddMultipleLines(doc, "Content (topics): ", summary.GetSubjectContent(), true);
-            AddAssessments(doc, summary.GetAssessments());
-            AddMultipleLines(doc, "Minimum Requirements: ", summary.GetMinimumReq(), true);
-            AddMultipleLines(doc, "Supplementary Assessments: ", summary.GetSuppAssessments(), true);
-            AddMultipleLines(doc, "Late Penalty: ", summary.GetLateAssessmentPenalty(), true);
-            AddMultipleLines(doc, "Required Texts: ", summary.GetReqTexts(), true);
-            
-            doc.write(out);
-            System.out.println("Done");
-            return true;
+            try (FileOutputStream out = new FileOutputStream(file))
+            {
+                try (FileWriter writer = new FileWriter(file))
+                {
+                    writer.append(header);
+                    int uidNb = 1;
+                    for (Assessment assessment: summary.GetAssessments())
+                    {
+                        if (assessment.GetDueDate() != null)
+                        {
+                            String uid = "uid" + Integer.toString(uidNb) + "@example.com";
+                            writer.append(CreateEventStr(assessment, uid));
+                            uidNb++;
+                        }
+                    }
+                    writer.append(footer);
+
+                    writer.flush();
+                }
+
+                System.out.println("Done");
+                return true;
+            }
         }
         catch (Exception e)
         {
             System.out.println("Error");
             return false;
-        }
+        }        
     }
     
-    private static void AddHeading(XWPFDocument doc, String headingText)
+    private static String CreateEventStr(Assessment assessment, String uid)
     {
-        XWPFParagraph headingPara = doc.createParagraph();
-        XWPFRun headingRun = headingPara.createRun();
-        headingRun.setText(headingText);
-        headingRun.setBold(true);
-        headingRun.setFontSize(18);
-        headingPara.setAlignment(ParagraphAlignment.CENTER);
+        String dueDate = FormatDate(assessment.GetDueDate());
+        String timestamp = GenerateTimestamp();
         
-        AddWhitespace(doc);
+        String eventText = eventBegin +
+                           "DTSTART;VALUE=DATE:" + dueDate + "\n" +
+                           "DTEND;VALUE=DATE:" + dueDate + "\n" +
+                           "DTSTAMP:" + timestamp + "\n" +
+                           "UID:" + uid + "\n" +
+                           "CREATED:" + timestamp + "\n" +
+                           "DESCRIPTION:\n" +
+                           "LAST-MODIFIED:" + timestamp + "\n" +
+                           "LOCATION:\n" +
+                           "SEQUENCE:1\n" +
+                           "STATUS:CONFIRMED\n" +
+                           "SUMMARY:" + assessment.GetAssessmentName() + "\n" +
+                           "TRANSP:OPAQUE\n" +
+                           eventEnd;
+        
+        return eventText;
     }
     
     /*
-     *  Adds a new field to the document in the form
-     *      label: text
+     *  Formats date as YYYYMMDD
      */
-    private static void AddSingleLine(XWPFDocument doc, String label, String text, int tabs, boolean bShouldAddWhitespace)
-    {     
-        if (text == null)
-        {
-            return;
-        }
-        
-        XWPFParagraph labelPara = doc.createParagraph();
-        XWPFRun labelRun = labelPara.createRun();
-        labelRun.setText(label);
-        labelRun.setBold(true);
-
-        XWPFRun textRun;
-
-        for (int i = 0; i < tabs; i++)
-        {
-            labelRun.addTab();
-        }
-        
-        textRun = labelPara.createRun();
-        textRun.setText(text);
-        
-        if (bShouldAddWhitespace)
-        {
-            AddWhitespace(doc);
-        }
+    private static String FormatDate(Date date)
+    {
+        return FormatDateTimeStr(date.GetYear()) + FormatDateTimeStr(date.GetMonth()) + FormatDateTimeStr(date.GetDay());
     }
     
-    /*
-     *  Adds a new field to the document in the form
-     *      label:
-     *      text
-     *      text etc.
-     */
-    private static void AddMultipleLines(XWPFDocument doc, String label, String text, boolean bShouldAddWhitespace)
+    private static String FormatDateTimeStr(int nb)
     {
-        if (text == null)
+        if(nb < 10)
         {
-            return;
-        }
-        
-        XWPFParagraph labelPara = doc.createParagraph();
-        XWPFRun labelRun = labelPara.createRun();
-        labelRun.setText(label);
-        labelRun.setBold(true);
-        
-        String[] paragraphs = text.split("\\r?\\n");
-        
-        for (String paragraph: paragraphs)
-        {
-            XWPFParagraph para = doc.createParagraph();
-            XWPFRun textRun = para.createRun();
-            textRun.setText(paragraph);
-        }
-        
-        if (bShouldAddWhitespace)
-        {
-            AddWhitespace(doc);
-        }
-    }
-    
-    private static void AddAssessments(XWPFDocument doc, Assessment[] assessments)
-    {
-        XWPFParagraph para = doc.createParagraph();
-        XWPFRun subheadingRun = para.createRun();
-        subheadingRun.setText("Assessments:");
-        subheadingRun.setBold(true);
-        
-        for (Assessment assessment : assessments)
-        {
-            AddAssessment(doc, assessment);
-        }
-    }
-    
-    private static void AddAssessment(XWPFDocument doc, Assessment assessment)
-    {
-        XWPFParagraph para = doc.createParagraph();
-
-        XWPFRun assessmentNameRun = para.createRun();
-        assessmentNameRun.setText(assessment.GetAssessmentName());
-        assessmentNameRun.setBold(true);
-                
-        AddSingleLine(doc, "Type: ", assessment.GetType(), 2, false);
-        AddSingleLine(doc, "Groupwork: ", assessment.GetGroupwork(), 1, false);
-        AddSingleLine(doc, "Weight: ", Integer.toString(assessment.GetWeighting()) + "%", 1, false);
-        if (assessment.GetDueDate() != null)
-        {
-            AddSingleLine(doc, "Due:", assessment.GetDueDate().toString(), 2, true);
+            return "0" + Integer.toString(nb);
         }
         else
         {
-            AddWhitespace(doc);
+            return Integer.toString(nb);
         }
-        AddMultipleLines(doc, "Task:", assessment.GetDescription(), true);
     }
     
-    private static void AddWhitespace(XWPFDocument doc)
+    private static String GenerateTimestamp()
     {
-        XWPFParagraph whitespacePara = doc.createParagraph();
-        XWPFRun whitespaceRun = whitespacePara.createRun();
-        whitespaceRun.setText("");
+        LocalDateTime dateTime = LocalDateTime.now();
+        
+        String dateStr = FormatDateTimeStr(dateTime.getYear()) + FormatDateTimeStr(dateTime.getMonthValue()) + FormatDateTimeStr(dateTime.getDayOfMonth()) +
+                         "T" + FormatDateTimeStr(dateTime.getHour()) + FormatDateTimeStr(dateTime.getMinute()) + FormatDateTimeStr(dateTime.getSecond());     
+        
+        return dateStr;
     }
 }
-

@@ -40,6 +40,18 @@ public class Date
     @Override
     public String toString()
     {
-        return Day + "/" + Month + "/" + Year;
+        String dateStr = "";
+        if (Day < 10)
+        {
+            dateStr += "0";
+        }
+        dateStr += Integer.toString(Day) + "/";
+        if (Month < 10)
+        {
+            dateStr += "0";
+        }
+        dateStr += Integer.toString(Month) + "/" + Integer.toString(Year);
+        
+        return dateStr;
     }
 }
