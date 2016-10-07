@@ -85,21 +85,20 @@ public final class DocGenerator
                                      "There shall be no supplementary assessments.",
                                      null,
                                      "This is a dynamic and practical subject. There is no fixed or single text book for this subject. However, students may choose to buy and consult the relevant recommended books and references.");
-        
-        DocGenerator aGenerator = new DocGenerator();
-        
-        GenerateDoc(test);
+                
+        // /Users/Mel/Desktop/testDocument
+        GenerateDoc(test, "testDocument");
     }
     
     private DocGenerator()
     {
     }
     
-    ////////// ADD IN FILEPATH & INCLUSION ARGUMENTS LATER ///////////////////////////////////////////////////////////
-    public static boolean GenerateDoc(SubjectOutlineSummary summary)
+    ////////// ADD IN INCLUSION ARGUMENTS LATER ///////////////////////////////////////////////////////////
+    public static boolean GenerateDoc(SubjectOutlineSummary summary, String filepath)
     {
         XWPFDocument doc = new XWPFDocument();
-        try (FileOutputStream out = new FileOutputStream(new File("testDocument.docx")))
+        try (FileOutputStream out = new FileOutputStream(new File(filepath + ".docx")))
         {
             AddHeading(doc, summary.GetSubjectNb() + " " + summary.GetSubjectName());
             

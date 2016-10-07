@@ -98,6 +98,7 @@ public final class ICSGenerator
         
         ICSGenerator aGenerator = new ICSGenerator();
         
+        // /Users/Mel/Desktop/testfile
         GenerateICS(test, "testfile");
     }
     
@@ -105,12 +106,11 @@ public final class ICSGenerator
     {
     }
     
-    ////////// ADD IN FILEPATH ARGUMENT LATER ///////////////////////////////////////////////////////////
-    public static boolean GenerateICS(SubjectOutlineSummary summary, String filename)
+    public static boolean GenerateICS(SubjectOutlineSummary summary, String filepath)
     {
         try
         {
-            File file = new File(filename + ".ics");
+            File file = new File(filepath + ".ics");
             if (!file.exists())
             {
                 file.createNewFile();
