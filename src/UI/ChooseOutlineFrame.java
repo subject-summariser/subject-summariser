@@ -5,6 +5,7 @@
  */
 package UI;
 
+import MVC.Models.SubjectOutlineSummary;
 import MVC.Controllers.PythonJava;
 
 /**
@@ -91,10 +92,13 @@ public class ChooseOutlineFrame extends javax.swing.JFrame {
         {
             String path = jFileChooser1.getSelectedFile().toString();
             System.out.println("File Path: " + path);
-            view.initPython(path);
-            GenerateSummaryFrame4 form = new GenerateSummaryFrame4();
-            form.setVisible(true);
-            this.dispose();
+            if (view.initPython(path))
+            {
+                SubjectOutlineSummary sos = view.getSOS();
+                GenerateSummaryFrame4 form = new GenerateSummaryFrame4(sos, path);
+                form.setVisible(true);
+                this.dispose();
+            }
         }
         if(ActionCmd.equals("CancelSelection")){
             this.dispose();

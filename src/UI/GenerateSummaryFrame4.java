@@ -5,7 +5,8 @@
  */
 package UI;
 
-//import FileGenerator.DocGenerator;
+import MVC.Models.SubjectOutlineSummary;
+import FileGenerator.DocGenerator;
 
 /**
  *
@@ -13,10 +14,15 @@ package UI;
  */
 public class GenerateSummaryFrame4 extends javax.swing.JFrame {
 
+    SubjectOutlineSummary SOS;
+    String FilePath;
+    
     /**
      * Creates new form GenerateSummaryFrame4
      */
-    public GenerateSummaryFrame4() {
+    public GenerateSummaryFrame4(SubjectOutlineSummary sos, String filePath) {
+        SOS = sos;
+        FilePath = filePath;
         initComponents();
     }
 
@@ -105,7 +111,7 @@ public class GenerateSummaryFrame4 extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         boolean success;
-//        success = DocGenerator.GenerateDoc(SOS, filepath);
+        success = DocGenerator.GenerateDoc(SOS, FilePath);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -138,7 +144,7 @@ public class GenerateSummaryFrame4 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GenerateSummaryFrame4().setVisible(true);
+                new GenerateSummaryFrame4(null, "").setVisible(true);
             }
         });
     }

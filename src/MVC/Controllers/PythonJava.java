@@ -21,28 +21,20 @@ public class PythonJava {
     private final String scriptFilePath = System.getProperty("user.dir") + "\\src\\PDFParser";
     private final List<String> summary = new ArrayList<>();
     
+    SubjectOutlineSummary sos = new SubjectOutlineSummary();
+    Assessment ass = new Assessment();
+        
     public PythonJava()
     {
     }
     
-    public SubjectOutlineSummary toSOS()
-    {
-        SubjectOutlineSummary sos = new SubjectOutlineSummary();
-        Assessment ass = new Assessment();
-        
+    public void toSOS()
+    {      
         // Fix to be dynamic
         sos.setSubjectName(summary.get(1));
-        ass.setAssName(summary.get(2));
-        ass.setAssType(summary.get(3));
-        sos.addAssessment(ass);
-        ass.setAssName(summary.get(4));
-        ass.setAssType(summary.get(5));
-        sos.addAssessment(ass);
-        ass.setAssName(summary.get(6));
-        ass.setAssType(summary.get(7));
-        sos.addAssessment(ass);
-        
-        return sos;
+        sos.addAssessment(summary.get(2), summary.get(3));
+        sos.addAssessment(summary.get(4), summary.get(5));
+        sos.addAssessment(summary.get(6), summary.get(7));
     }
     
     public boolean initPython(String filePath) 
@@ -82,6 +74,7 @@ public class PythonJava {
                 summary.add(s);                             ///////////////////////////////
                 System.out.println(summary.toString());     /////////////////////////////
             }
+            toSOS();                                        ///////////////////////////////
         } catch (IOException ex) {
 //            Logger.getLogger(SOSProto.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "DEBUG:" + ex);
@@ -89,5 +82,9 @@ public class PythonJava {
         int exitCode = Integer.parseInt(summary.get(summary.size() - 1));
 
         return exitCode;
+    }
+    
+    public SubjectOutlineSummary getSOS() {
+        return sos;
     }
 }

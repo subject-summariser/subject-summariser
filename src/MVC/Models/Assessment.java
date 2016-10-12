@@ -5,63 +5,68 @@
  */
 package MVC.Models;
 
-import java.util.Date;
+//import MVC.Models.Date;
 
 /**
  *
- * @author Andy
+ * @author Melisa
  */
 public class Assessment {
     
-    private String assName;
-    private String assType;
-    private int assWeight;
-    private Date dueDate;
-    private Boolean groupWork;
+    private String AssessmentName;
+    private String Type;
+    private final String Groupwork;
+    private final int Weighting;
+    private final String Description;
+    private final Date DueDate;
     
     public Assessment()
     {
+        Groupwork = "Group";
+        Weighting = 666;
+        Description = "Llamma";
+        DueDate = new Date(1, 1, 1);
+    }
+    
+//    public Assessment(String assessmentName, String type, String groupwork, int weighting, String description, Date dueDate)
+//    {
+//        AssessmentName = assessmentName;
+//        Type = type;
+//        Groupwork = groupwork;
+//        Weighting = weighting;
+//        Description = description;
+//        DueDate = dueDate;
+//    }
+    
+    public String getAssessmentName() {
+        return AssessmentName;
     }
 
-    public String getAssName() {
-        return assName;
+    public void setAssessmentName(String AssessmentName) {
+        this.AssessmentName = AssessmentName;
     }
 
-    public void setAssName(String assName) {
-        this.assName = assName;
+    public String getType() {
+        return Type;
     }
 
-    public String getAssType() {
-        return assType;
+    public void setType(String Type) {
+        this.Type = Type;
     }
 
-    public void setAssType(String assType) {
-        this.assType = assType;
+    public String getGroupwork() {
+        return Groupwork;
+    }    
+    
+    public int getWeighting() {
+        return Weighting;
     }
 
-    public int getAssWeight() {
-        return assWeight;
-    }
-
-    public void setAssWeight(int assWeight) {
-        this.assWeight = assWeight;
+    public String getDescription() {
+        return Description;
     }
 
     public Date getDueDate() {
-        return dueDate;
+        return DueDate;
     }
-
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public Boolean getGroupWork() {
-        return groupWork;
-    }
-
-    public void setGroupWork(Boolean groupWork) {
-        this.groupWork = groupWork;
-    }
-    
-    
 }

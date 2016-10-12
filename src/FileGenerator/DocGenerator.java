@@ -1,4 +1,3 @@
-//package FileGenerator;
 //
 ///*
 // * Generates a .docx file from a summarised subject outline
@@ -7,18 +6,24 @@
 // * @date    04/10/16
 // * @version 1.0
 // */
-//
-//import java.io.File;
-//import java.io.FileOutputStream;
-//
-//import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
-//import org.apache.poi.xwpf.usermodel.XWPFDocument;
-//import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-//import org.apache.poi.xwpf.usermodel.XWPFRun;
-//
-///* Simulates a static class */
-//public final class DocGenerator
-//{
+package FileGenerator;
+
+import MVC.Models.SubjectOutlineSummary;
+import MVC.Models.Assessment;
+
+import java.util.LinkedList;
+
+import java.io.File;
+import java.io.FileOutputStream;
+
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
+
+/* Simulates a static class */
+public final class DocGenerator
+{
 //    public static void main(String[] args)
 //    {
 //        Date date0 = new Date(5, 9, 2016);
@@ -85,155 +90,155 @@
 //        // /Users/Mel/Desktop/testDocument
 //        GenerateDoc(test, "testDocument");
 //    }
-//    
-//    private DocGenerator()
-//    {
-//    }
-//    
-//    ////////// ADD IN INCLUSION ARGUMENTS LATER ///////////////////////////////////////////////////////////
-//    public static boolean GenerateDoc(SubjectOutlineSummary summary, String filepath)
-//    {
-//        XWPFDocument doc = new XWPFDocument();
-//        try (FileOutputStream out = new FileOutputStream(new File(filepath + ".docx")))
-//        {
-//            AddHeading(doc, summary.GetSubjectNb() + " " + summary.GetSubjectName());
-//            
-//            AddMultipleLines(doc, "Key contacts: ", summary.GetKeyContacts(), true);
-//            AddMultipleLines(doc, "Content (topics): ", summary.GetSubjectContent(), true);
-//            AddAssessments(doc, summary.GetAssessments());
-//            AddMultipleLines(doc, "Minimum Requirements: ", summary.GetMinimumReq(), true);
-//            AddMultipleLines(doc, "Supplementary Assessments: ", summary.GetSuppAssessments(), true);
-//            AddMultipleLines(doc, "Late Penalty: ", summary.GetLateAssessmentPenalty(), true);
-//            AddMultipleLines(doc, "Required Texts: ", summary.GetReqTexts(), true);
-//            
-//            doc.write(out);
-//            System.out.println("Done");
-//            return true;
-//        }
-//        catch (Exception e)
-//        {
-//            System.out.println("Error");
-//            return false;
-//        }
-//    }
-//    
-//    private static void AddHeading(XWPFDocument doc, String headingText)
-//    {
-//        XWPFParagraph headingPara = doc.createParagraph();
-//        XWPFRun headingRun = headingPara.createRun();
-//        headingRun.setText(headingText);
-//        headingRun.setBold(true);
-//        headingRun.setFontSize(18);
-//        headingPara.setAlignment(ParagraphAlignment.CENTER);
-//        
-//        AddWhitespace(doc);
-//    }
-//    
-//    /*
-//     *  Adds a new field to the document in the form
-//     *      label: text
-//     */
-//    private static void AddSingleLine(XWPFDocument doc, String label, String text, int tabs, boolean bShouldAddWhitespace)
-//    {     
-//        if (text == null)
-//        {
-//            return;
-//        }
-//        
-//        XWPFParagraph labelPara = doc.createParagraph();
-//        XWPFRun labelRun = labelPara.createRun();
-//        labelRun.setText(label);
-//        labelRun.setBold(true);
-//
-//        XWPFRun textRun;
-//
-//        for (int i = 0; i < tabs; i++)
-//        {
-//            labelRun.addTab();
-//        }
-//        
-//        textRun = labelPara.createRun();
-//        textRun.setText(text);
-//        
-//        if (bShouldAddWhitespace)
-//        {
-//            AddWhitespace(doc);
-//        }
-//    }
-//    
-//    /*
-//     *  Adds a new field to the document in the form
-//     *      label:
-//     *      text
-//     *      text etc.
-//     */
-//    private static void AddMultipleLines(XWPFDocument doc, String label, String text, boolean bShouldAddWhitespace)
-//    {
-//        if (text == null)
-//        {
-//            return;
-//        }
-//        
-//        XWPFParagraph labelPara = doc.createParagraph();
-//        XWPFRun labelRun = labelPara.createRun();
-//        labelRun.setText(label);
-//        labelRun.setBold(true);
-//        
-//        String[] paragraphs = text.split("\\r?\\n");
-//        
-//        for (String paragraph: paragraphs)
-//        {
-//            XWPFParagraph para = doc.createParagraph();
-//            XWPFRun textRun = para.createRun();
-//            textRun.setText(paragraph);
-//        }
-//        
-//        if (bShouldAddWhitespace)
-//        {
-//            AddWhitespace(doc);
-//        }
-//    }
-//    
-//    private static void AddAssessments(XWPFDocument doc, Assessment[] assessments)
-//    {
-//        XWPFParagraph para = doc.createParagraph();
-//        XWPFRun subheadingRun = para.createRun();
-//        subheadingRun.setText("Assessments:");
-//        subheadingRun.setBold(true);
-//        
-//        for (Assessment assessment : assessments)
-//        {
-//            AddAssessment(doc, assessment);
-//        }
-//    }
-//    
-//    private static void AddAssessment(XWPFDocument doc, Assessment assessment)
-//    {
-//        XWPFParagraph para = doc.createParagraph();
-//
-//        XWPFRun assessmentNameRun = para.createRun();
-//        assessmentNameRun.setText(assessment.GetAssessmentName());
-//        assessmentNameRun.setBold(true);
-//                
-//        AddSingleLine(doc, "Type: ", assessment.GetType(), 2, false);
-//        AddSingleLine(doc, "Groupwork: ", assessment.GetGroupwork(), 1, false);
-//        AddSingleLine(doc, "Weight: ", Integer.toString(assessment.GetWeighting()) + "%", 1, false);
-//        if (assessment.GetDueDate() != null)
-//        {
-//            AddSingleLine(doc, "Due:", assessment.GetDueDate().toString(), 2, true);
-//        }
-//        else
-//        {
-//            AddWhitespace(doc);
-//        }
-//        AddMultipleLines(doc, "Task:", assessment.GetDescription(), true);
-//    }
-//    
-//    private static void AddWhitespace(XWPFDocument doc)
-//    {
-//        XWPFParagraph whitespacePara = doc.createParagraph();
-//        XWPFRun whitespaceRun = whitespacePara.createRun();
-//        whitespaceRun.setText("");
-//    }
-//}
-//
+    
+    private DocGenerator()
+    {
+    }
+    
+    ////////// ADD IN INCLUSION ARGUMENTS LATER ///////////////////////////////////////////////////////////
+    public static boolean GenerateDoc(SubjectOutlineSummary summary, String filepath)
+    {
+        XWPFDocument doc = new XWPFDocument();
+        try (FileOutputStream out = new FileOutputStream(new File(filepath + ".docx")))
+        {
+            AddHeading(doc, summary.getSubjectNb() + " " + summary.getSubjectName());
+            
+            AddMultipleLines(doc, "Key contacts: ", summary.getKeyContacts(), true);
+            AddMultipleLines(doc, "Content (topics): ", summary.getSubjectContent(), true);
+            AddAssessments(doc, summary.getAssessments());
+            AddMultipleLines(doc, "Minimum Requirements: ", summary.getMinimumReq(), true);
+            AddMultipleLines(doc, "Supplementary Assessments: ", summary.getSuppAssessments(), true);
+            AddMultipleLines(doc, "Late Penalty: ", summary.getLateAssessmentPenalty(), true);
+            AddMultipleLines(doc, "Required Texts: ", summary.getReqTexts(), true);
+            
+            doc.write(out);
+            System.out.println("Done");
+            return true;
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error");
+            return false;
+        }
+    }
+    
+    private static void AddHeading(XWPFDocument doc, String headingText)
+    {
+        XWPFParagraph headingPara = doc.createParagraph();
+        XWPFRun headingRun = headingPara.createRun();
+        headingRun.setText(headingText);
+        headingRun.setBold(true);
+        headingRun.setFontSize(18);
+        headingPara.setAlignment(ParagraphAlignment.CENTER);
+        
+        AddWhitespace(doc);
+    }
+    
+    /*
+     *  Adds a new field to the document in the form
+     *      label: text
+     */
+    private static void AddSingleLine(XWPFDocument doc, String label, String text, int tabs, boolean bShouldAddWhitespace)
+    {     
+        if (text == null)
+        {
+            return;
+        }
+        
+        XWPFParagraph labelPara = doc.createParagraph();
+        XWPFRun labelRun = labelPara.createRun();
+        labelRun.setText(label);
+        labelRun.setBold(true);
+
+        XWPFRun textRun;
+
+        for (int i = 0; i < tabs; i++)
+        {
+            labelRun.addTab();
+        }
+        
+        textRun = labelPara.createRun();
+        textRun.setText(text);
+        
+        if (bShouldAddWhitespace)
+        {
+            AddWhitespace(doc);
+        }
+    }
+    
+    /*
+     *  Adds a new field to the document in the form
+     *      label:
+     *      text
+     *      text etc.
+     */
+    private static void AddMultipleLines(XWPFDocument doc, String label, String text, boolean bShouldAddWhitespace)
+    {
+        if (text == null)
+        {
+            return;
+        }
+        
+        XWPFParagraph labelPara = doc.createParagraph();
+        XWPFRun labelRun = labelPara.createRun();
+        labelRun.setText(label);
+        labelRun.setBold(true);
+        
+        String[] paragraphs = text.split("\\r?\\n");
+        
+        for (String paragraph: paragraphs)
+        {
+            XWPFParagraph para = doc.createParagraph();
+            XWPFRun textRun = para.createRun();
+            textRun.setText(paragraph);
+        }
+        
+        if (bShouldAddWhitespace)
+        {
+            AddWhitespace(doc);
+        }
+    }
+    
+    private static void AddAssessments(XWPFDocument doc, LinkedList<Assessment> assessments)
+    {
+        XWPFParagraph para = doc.createParagraph();
+        XWPFRun subheadingRun = para.createRun();
+        subheadingRun.setText("Assessments:");
+        subheadingRun.setBold(true);
+        
+        for (Assessment assessment : assessments)
+        {
+            AddAssessment(doc, assessment);
+        }
+    }
+    
+    private static void AddAssessment(XWPFDocument doc, Assessment assessment)
+    {
+        XWPFParagraph para = doc.createParagraph();
+
+        XWPFRun assessmentNameRun = para.createRun();
+        assessmentNameRun.setText(assessment.getAssessmentName());
+        assessmentNameRun.setBold(true);
+                
+        AddSingleLine(doc, "Type: ", assessment.getType(), 2, false);
+        AddSingleLine(doc, "Groupwork: ", assessment.getGroupwork(), 1, false);
+        AddSingleLine(doc, "Weight: ", Integer.toString(assessment.getWeighting()) + "%", 1, false);
+        if (assessment.getDueDate() != null)
+        {
+            AddSingleLine(doc, "Due:", assessment.getDueDate().toString(), 2, true);
+        }
+        else
+        {
+            AddWhitespace(doc);
+        }
+        AddMultipleLines(doc, "Task:", assessment.getDescription(), true);
+    }
+    
+    private static void AddWhitespace(XWPFDocument doc)
+    {
+        XWPFParagraph whitespacePara = doc.createParagraph();
+        XWPFRun whitespaceRun = whitespacePara.createRun();
+        whitespaceRun.setText("");
+    }
+}
+

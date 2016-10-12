@@ -125,7 +125,7 @@ public class GenerateSummaryFrame3 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
-        new GenerateSummaryFrame4().setVisible(true);
+        new GenerateSummaryFrame4(null, "").setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
