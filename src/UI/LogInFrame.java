@@ -7,14 +7,14 @@ package UI;
 
 /**
  *
- * @author laurabecker
+ * @author christinevinaviles
  */
-public class GenerateSummaryFrame2 extends javax.swing.JFrame {
+public class LogInFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form GenerateSummaryFrame2
+     * Creates new form LogInFrame
      */
-    public GenerateSummaryFrame2() {
+    public LogInFrame() {
         initComponents();
     }
 
@@ -29,11 +29,13 @@ public class GenerateSummaryFrame2 extends javax.swing.JFrame {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jLabel1 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,16 +44,9 @@ public class GenerateSummaryFrame2 extends javax.swing.JFrame {
         jInternalFrame1.getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Lantinghei TC", 0, 30)); // NOI18N
-        jLabel1.setText("Generate a summary");
+        jLabel1.setText("Log In");
         jInternalFrame1.getContentPane().add(jLabel1);
-        jLabel1.setBounds(90, 80, 277, 39);
-        jInternalFrame1.getContentPane().add(jProgressBar1);
-        jProgressBar1.setBounds(110, 160, 263, 32);
-
-        jLabel2.setFont(new java.awt.Font("Lantinghei TC", 0, 16)); // NOI18N
-        jLabel2.setText("Generating...");
-        jInternalFrame1.getContentPane().add(jLabel2);
-        jLabel2.setBounds(190, 190, 89, 21);
+        jLabel1.setBounds(200, 80, 100, 39);
         jInternalFrame1.getContentPane().add(jLabel3);
         jLabel3.setBounds(210, 6, 0, 0);
 
@@ -59,9 +54,33 @@ public class GenerateSummaryFrame2 extends javax.swing.JFrame {
         jInternalFrame1.getContentPane().add(jLabel4);
         jLabel4.setBounds(210, 10, 60, 70);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/subject/outline/summary/Images/Extracting box.png"))); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lantinghei TC", 0, 18)); // NOI18N
+        jLabel2.setText("Username:");
+        jInternalFrame1.getContentPane().add(jLabel2);
+        jLabel2.setBounds(120, 140, 100, 20);
+
+        jLabel5.setFont(new java.awt.Font("Lantinghei TC", 0, 18)); // NOI18N
+        jLabel5.setText("Password:");
         jInternalFrame1.getContentPane().add(jLabel5);
-        jLabel5.setBounds(70, 130, 340, 100);
+        jLabel5.setBounds(120, 190, 100, 20);
+
+        jTextField1.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
+        jInternalFrame1.getContentPane().add(jTextField1);
+        jTextField1.setBounds(230, 140, 130, 20);
+
+        jButton1.setFont(new java.awt.Font("Lantinghei TC", 0, 18)); // NOI18N
+        jButton1.setText("Log In");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jInternalFrame1.getContentPane().add(jButton1);
+        jButton1.setBounds(190, 240, 100, 33);
+
+        jTextField2.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
+        jInternalFrame1.getContentPane().add(jTextField2);
+        jTextField2.setBounds(230, 190, 130, 20);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,6 +95,12 @@ public class GenerateSummaryFrame2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new ChooseOutlineFrame().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -94,31 +119,33 @@ public class GenerateSummaryFrame2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GenerateSummaryFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LogInFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GenerateSummaryFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LogInFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GenerateSummaryFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LogInFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GenerateSummaryFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LogInFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GenerateSummaryFrame2().setVisible(true);
+                new LogInFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

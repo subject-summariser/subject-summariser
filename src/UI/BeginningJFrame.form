@@ -57,7 +57,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="287" y="143" width="132" height="70"/>
+              <AbsoluteConstraints x="280" y="140" width="140" height="70"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -73,7 +73,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="77" y="143" width="-1" height="70"/>
+              <AbsoluteConstraints x="80" y="140" width="140" height="70"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -110,6 +110,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="New? Sign Up."/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel3MouseClicked"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="383" y="305" width="-1" height="-1"/>
@@ -131,7 +134,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="236" y="70" width="10" height="160"/>
+              <AbsoluteConstraints x="240" y="70" width="20" height="160"/>
             </Constraint>
           </Constraints>
         </Component>

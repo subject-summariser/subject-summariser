@@ -90,12 +90,10 @@ public class GenerateSummaryFrame3 extends javax.swing.JFrame {
         jLabel3.setBounds(210, 6, 0, 0);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/llama.png"))); // NOI18N
-        jLabel4.setText("jLabel4");
         jInternalFrame1.getContentPane().add(jLabel4);
         jLabel4.setBounds(210, 10, 60, 70);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/Generate box.png"))); // NOI18N
-        jLabel5.setText("jLabel5");
         jInternalFrame1.getContentPane().add(jLabel5);
         jLabel5.setBounds(70, 120, 340, 170);
 

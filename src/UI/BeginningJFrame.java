@@ -51,7 +51,7 @@ public class BeginningJFrame extends javax.swing.JFrame {
             }
         });
         jInternalFrame1.getContentPane().add(jButton2);
-        jButton2.setBounds(287, 143, 132, 70);
+        jButton2.setBounds(280, 140, 140, 70);
 
         jButton1.setFont(new java.awt.Font("Lantinghei TC", 0, 28)); // NOI18N
         jButton1.setText("Guest");
@@ -61,7 +61,7 @@ public class BeginningJFrame extends javax.swing.JFrame {
             }
         });
         jInternalFrame1.getContentPane().add(jButton1);
-        jButton1.setBounds(77, 143, 107, 70);
+        jButton1.setBounds(80, 140, 140, 70);
 
         jLabel1.setFont(new java.awt.Font("Lantinghei TC", 0, 28)); // NOI18N
         jLabel1.setText("Enter as");
@@ -75,6 +75,11 @@ public class BeginningJFrame extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Lantinghei TC", 0, 15)); // NOI18N
         jLabel3.setText("New? Sign Up.");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         jInternalFrame1.getContentPane().add(jLabel3);
         jLabel3.setBounds(383, 305, 96, 20);
         jInternalFrame1.getContentPane().add(jLabel4);
@@ -82,11 +87,11 @@ public class BeginningJFrame extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/line.png"))); // NOI18N
         jInternalFrame1.getContentPane().add(jLabel6);
-        jLabel6.setBounds(236, 70, 10, 160);
+        jLabel6.setBounds(240, 70, 20, 160);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/llama.png"))); // NOI18N
         jInternalFrame1.getContentPane().add(jLabel5);
-        jLabel5.setBounds(10, 10, 0, 70);
+        jLabel5.setBounds(10, 10, 60, 70);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,14 +109,18 @@ public class BeginningJFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
-        new GenerateSummaryFrame1().setVisible(true);
+        new SignUpFrame().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
         new GenerateSummaryFrame1().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {
+        this.setVisible(false);
+        new SignUpFrame().setVisible(true);
+    }
+    
     /**
      * @param args the command line arguments
      */
