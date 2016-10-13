@@ -7,14 +7,14 @@ package subject.outline.summary;
 
 /**
  *
- * @author laurabecker
+ * @author christinevinaviles
  */
-public class BeginningJFrame extends javax.swing.JFrame {
+public class LogInFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form BeginningJFrame
+     * Creates new form LogInFrame
      */
-    public BeginningJFrame() {
+    public LogInFrame() {
         initComponents();
     }
 
@@ -28,14 +28,14 @@ public class BeginningJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,55 +43,44 @@ public class BeginningJFrame extends javax.swing.JFrame {
         jInternalFrame1.setVisible(true);
         jInternalFrame1.getContentPane().setLayout(null);
 
-        jButton2.setFont(new java.awt.Font("Lantinghei TC", 0, 28)); // NOI18N
-        jButton2.setText("User");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jInternalFrame1.getContentPane().add(jButton2);
-        jButton2.setBounds(280, 140, 140, 70);
+        jLabel1.setFont(new java.awt.Font("Lantinghei TC", 0, 30)); // NOI18N
+        jLabel1.setText("Log In");
+        jInternalFrame1.getContentPane().add(jLabel1);
+        jLabel1.setBounds(200, 80, 100, 42);
+        jInternalFrame1.getContentPane().add(jLabel3);
+        jLabel3.setBounds(210, 6, 0, 0);
 
-        jButton1.setFont(new java.awt.Font("Lantinghei TC", 0, 28)); // NOI18N
-        jButton1.setText("Guest");
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/subject/outline/summary/Images/llama.png"))); // NOI18N
+        jInternalFrame1.getContentPane().add(jLabel4);
+        jLabel4.setBounds(210, 10, 60, 70);
+
+        jLabel2.setFont(new java.awt.Font("Lantinghei TC", 0, 18)); // NOI18N
+        jLabel2.setText("Username:");
+        jInternalFrame1.getContentPane().add(jLabel2);
+        jLabel2.setBounds(120, 140, 100, 20);
+
+        jLabel5.setFont(new java.awt.Font("Lantinghei TC", 0, 18)); // NOI18N
+        jLabel5.setText("Password:");
+        jInternalFrame1.getContentPane().add(jLabel5);
+        jLabel5.setBounds(120, 190, 100, 20);
+
+        jTextField1.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
+        jInternalFrame1.getContentPane().add(jTextField1);
+        jTextField1.setBounds(230, 140, 130, 20);
+
+        jButton1.setFont(new java.awt.Font("Lantinghei TC", 0, 18)); // NOI18N
+        jButton1.setText("Log In");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jInternalFrame1.getContentPane().add(jButton1);
-        jButton1.setBounds(80, 140, 140, 70);
+        jButton1.setBounds(190, 240, 100, 34);
 
-        jLabel1.setFont(new java.awt.Font("Lantinghei TC", 0, 28)); // NOI18N
-        jLabel1.setText("Enter as");
-        jInternalFrame1.getContentPane().add(jLabel1);
-        jLabel1.setBounds(86, 83, 113, 40);
-
-        jLabel2.setFont(new java.awt.Font("Lantinghei TC", 0, 28)); // NOI18N
-        jLabel2.setText("Enter as");
-        jInternalFrame1.getContentPane().add(jLabel2);
-        jLabel2.setBounds(294, 83, 113, 40);
-
-        jLabel3.setFont(new java.awt.Font("Lantinghei TC", 0, 15)); // NOI18N
-        jLabel3.setText("New? Sign Up.");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-        });
-        jInternalFrame1.getContentPane().add(jLabel3);
-        jLabel3.setBounds(383, 305, 107, 22);
-        jInternalFrame1.getContentPane().add(jLabel4);
-        jLabel4.setBounds(6, 6, 0, 0);
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/subject/outline/summary/Images/line.png"))); // NOI18N
-        jInternalFrame1.getContentPane().add(jLabel6);
-        jLabel6.setBounds(240, 70, 20, 160);
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/subject/outline/summary/Images/llama.png"))); // NOI18N
-        jInternalFrame1.getContentPane().add(jLabel5);
-        jLabel5.setBounds(10, 10, 60, 70);
+        jTextField2.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
+        jInternalFrame1.getContentPane().add(jTextField2);
+        jTextField2.setBounds(230, 190, 130, 20);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,21 +96,11 @@ public class BeginningJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
-        new GenerateSummaryFrame1().setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setVisible(false);
-        new GenerateSummaryFrame1().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        new SignUpFrame().setVisible(true);
-    }//GEN-LAST:event_jLabel3MouseClicked
+        new ChooseOutlineFrame().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,33 +119,33 @@ public class BeginningJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BeginningJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LogInFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BeginningJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LogInFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BeginningJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LogInFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BeginningJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LogInFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BeginningJFrame().setVisible(true);
+                new LogInFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
