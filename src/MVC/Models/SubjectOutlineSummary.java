@@ -80,7 +80,7 @@ public class SubjectOutlineSummary {
         Assessment a = new Assessment();
         a.setAssessmentName(name);
         a.setType(type);
-//        Assessments.add(a);
+        Assessments.add(a);
     }
 
     public String getMinimumReq() {
