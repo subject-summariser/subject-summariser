@@ -5,14 +5,13 @@
  */
 package MVC.Models;
 
-import MVC.Views.Viewable;
 import java.util.*;
 
 /**
  *
  * @author Andy
  */
-public class User extends Viewable {
+public class User {
     
     private String firstName;
     private String lastName;
