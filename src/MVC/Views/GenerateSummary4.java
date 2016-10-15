@@ -19,13 +19,15 @@ public class GenerateSummary4 extends javax.swing.JFrame {
     ViewController ViewControl = new ViewController();
     SubjectOutlineSummary SOS;
     String FilePath;
+    boolean[] CheckSelect = new boolean[6];
     
     /**
      * Creates new form GenerateSummary4
      */
-    public GenerateSummary4(SubjectOutlineSummary sos, String filePath) {
+    public GenerateSummary4(SubjectOutlineSummary sos, String filePath, boolean[] checkSelect) {
         SOS = sos;
         FilePath = filePath;
+        CheckSelect = checkSelect;
         initComponents();
     }
 
@@ -112,7 +114,7 @@ public class GenerateSummary4 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DocGenerator.GenerateDoc(SOS, FilePath);
+        DocGenerator.GenerateDoc(SOS, FilePath, CheckSelect);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -153,7 +155,7 @@ public class GenerateSummary4 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GenerateSummary4(null, "").setVisible(true);
+                new GenerateSummary4(null, "", null).setVisible(true);
             }
         });
     }

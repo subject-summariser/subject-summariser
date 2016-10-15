@@ -6,6 +6,7 @@
 package MVC.Views;
 
 import MVC.Models.SubjectOutlineSummary;
+import MVC.Controllers.ViewController;
 
 /**
  *
@@ -15,6 +16,9 @@ public class GenerateSummary3 extends javax.swing.JFrame {
 
     SubjectOutlineSummary SOS;
     String FilePath;
+    ViewController ViewControl = new ViewController();
+    
+    boolean[] CheckSelect = new boolean[6];
     
     /**
      * Creates new form GenerateSummary3
@@ -59,26 +63,32 @@ public class GenerateSummary3 extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
 
         jCheckBox1.setFont(new java.awt.Font("Lantinghei TC", 0, 13)); // NOI18N
+        jCheckBox1.setSelected(true);
         jCheckBox1.setText("Key Contacts");
         jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, -1, -1));
 
         jCheckBox2.setFont(new java.awt.Font("Lantinghei TC", 0, 13)); // NOI18N
-        jCheckBox2.setText("Assessment Type");
+        jCheckBox2.setSelected(true);
+        jCheckBox2.setText("Content");
         jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
 
         jCheckBox3.setFont(new java.awt.Font("Lantinghei TC", 0, 13)); // NOI18N
-        jCheckBox3.setText("Due Dates");
+        jCheckBox3.setSelected(true);
+        jCheckBox3.setText("Supplementary Tasks");
         jPanel1.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, -1));
 
         jCheckBox4.setFont(new java.awt.Font("Lantinghei TC", 0, 13)); // NOI18N
-        jCheckBox4.setText("Weighting");
+        jCheckBox4.setSelected(true);
+        jCheckBox4.setText("Late Penalty");
         jPanel1.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, -1, -1));
 
         jCheckBox5.setFont(new java.awt.Font("Lantinghei TC", 0, 13)); // NOI18N
+        jCheckBox5.setSelected(true);
         jCheckBox5.setText("Required Texts");
         jPanel1.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, -1, -1));
 
         jCheckBox6.setFont(new java.awt.Font("Lantinghei TC", 0, 13)); // NOI18N
+        jCheckBox6.setSelected(true);
         jCheckBox6.setText("Pass Criteria");
         jPanel1.add(jCheckBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
 
@@ -109,8 +119,33 @@ public class GenerateSummary3 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setVisible(false);
-        new GenerateSummary4(SOS, FilePath).setVisible(true);
+        
+        if(jCheckBox1.isSelected() == false)
+        {
+            CheckSelect[0] = true;
+        }
+        if(jCheckBox2.isSelected() == false)
+        {
+            CheckSelect[1] = true;
+        }
+        if(jCheckBox3.isSelected() == false)
+        {
+            CheckSelect[2] = true;
+        }
+        if(jCheckBox4.isSelected() == false)
+        {
+            CheckSelect[3] = true;
+        }
+        if(jCheckBox5.isSelected() == false)
+        {
+            CheckSelect[4] = true;
+        }
+        if(jCheckBox6.isSelected() == false)
+        {
+            CheckSelect[5] = true;
+        }
+        
+        ViewControl.OpenNewFrame(this, new GenerateSummary4(SOS, FilePath, CheckSelect));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
