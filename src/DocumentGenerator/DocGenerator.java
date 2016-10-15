@@ -23,6 +23,7 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 /* Simulates a static class */
 public final class DocGenerator
 {
+    /* USED FOR TESTING PURPOSES; TO BE TAKEN OUT IN FINAL PRODUCT */
     public static void main(String[] args)
     {
         Date date0 = new Date(5, 9, 2016);
@@ -83,32 +84,59 @@ public final class DocGenerator
                                      "\n" +
                                      "Note: The Individual Contribution Logbook is mandatory for students to receive any individual project marks. If a student does not submit this assessment item, then he/she will receive zero for the project assessment tasks (Assessment Items 1-2)",
                                      "There shall be no supplementary assessments.",
-                                     null,
+                                     "Test test test test",
                                      "This is a dynamic and practical subject. There is no fixed or single text book for this subject. However, students may choose to buy and consult the relevant recommended books and references.");
                 
+        boolean[] inclusions = {true, true, true, true, true, true};
+        
         // /Users/Mel/Desktop/testDocument
-        GenerateDoc(test, "testDocument");
+        GenerateDoc(test, "testDocument", inclusions);
     }
     
     private DocGenerator()
     {
     }
     
-    ////////// ADD IN INCLUSION ARGUMENTS LATER ///////////////////////////////////////////////////////////
-    public static boolean GenerateDoc(SubjectOutlineSummary summary, String filepath)
+    public static boolean GenerateDoc(SubjectOutlineSummary summary, String filepath, boolean[] fieldInclusions)
     {
         XWPFDocument doc = new XWPFDocument();
+        
         try (FileOutputStream out = new FileOutputStream(new File(filepath + ".docx")))
-        {
+        {            
+            String labels[] = {"Key contacts: ",
+                               "Content (topics): ",
+                               "Minimum requirements: ",
+                               "Supplementary Assessments: ",
+                               "Late Penalty: ",
+                               "Required Texts: "};
+            
+            String content[] = {summary.GetKeyContacts(),
+                                summary.GetSubjectContent(),
+                                summary.GetMinimumReq(),
+                                summary.GetSuppAssessments(),
+                                summary.GetLateAssessmentPenalty(),
+                                summary.GetReqTexts()};
+            
             AddHeading(doc, summary.GetSubjectNb() + " " + summary.GetSubjectName());
             
-            AddMultipleLines(doc, "Key contacts: ", summary.GetKeyContacts(), true);
-            AddMultipleLines(doc, "Content (topics): ", summary.GetSubjectContent(), true);
+            int i;
+            for (i = 0; i < 2; i++)
+            {
+                if (fieldInclusions[i] == true)
+                {
+                    AddMultipleLines(doc, labels[i], content[i], true);
+                }
+            }
+            
             AddAssessments(doc, summary.GetAssessments());
-            AddMultipleLines(doc, "Minimum Requirements: ", summary.GetMinimumReq(), true);
-            AddMultipleLines(doc, "Supplementary Assessments: ", summary.GetSuppAssessments(), true);
-            AddMultipleLines(doc, "Late Penalty: ", summary.GetLateAssessmentPenalty(), true);
-            AddMultipleLines(doc, "Required Texts: ", summary.GetReqTexts(), true);
+            
+            for (; i < 6; i++)
+            {
+                if (fieldInclusions[i] == true)
+                {
+                    AddMultipleLines(doc, labels[i], content[i], true);
+                }
+            }
             
             doc.write(out);
             System.out.println("Done");
@@ -202,7 +230,7 @@ public final class DocGenerator
     {
         XWPFParagraph para = doc.createParagraph();
         XWPFRun subheadingRun = para.createRun();
-        subheadingRun.setText("Assessments:");
+        subheadingRun.setText("Assessments: ");
         subheadingRun.setBold(true);
         
         for (Assessment assessment : assessments)
@@ -219,18 +247,18 @@ public final class DocGenerator
         assessmentNameRun.setText(assessment.GetAssessmentName());
         assessmentNameRun.setBold(true);
                 
-        AddSingleLine(doc, "Type: ", assessment.GetType(), 2, false);
-        AddSingleLine(doc, "Groupwork: ", assessment.GetGroupwork(), 1, false);
-        AddSingleLine(doc, "Weight: ", Integer.toString(assessment.GetWeighting()) + "%", 1, false);
+        AddSingleLine(doc, "Type: ", assessment.GetType(), 0, false);
+        AddSingleLine(doc, "Groupwork: ", assessment.GetGroupwork(), 0, false);
+        AddSingleLine(doc, "Weight: ", Integer.toString(assessment.GetWeighting()) + "%", 0, false);
         if (assessment.GetDueDate() != null)
         {
-            AddSingleLine(doc, "Due:", assessment.GetDueDate().toString(), 2, true);
+            AddSingleLine(doc, "Due: ", assessment.GetDueDate().toString(), 0, true);
         }
         else
         {
             AddWhitespace(doc);
         }
-        AddMultipleLines(doc, "Task:", assessment.GetDescription(), true);
+        AddMultipleLines(doc, "Task: ", assessment.GetDescription(), true);
     }
     
     private static void AddWhitespace(XWPFDocument doc)
