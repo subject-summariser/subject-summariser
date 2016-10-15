@@ -87,17 +87,17 @@ public final class DocGenerator
                                      "Test test test test",
                                      "This is a dynamic and practical subject. There is no fixed or single text book for this subject. However, students may choose to buy and consult the relevant recommended books and references.");
                 
-        boolean[] inclusions = {true, true, true, true, true, true};
+        boolean[] exclusions = {false, false, false, false, false, false};
         
         // /Users/Mel/Desktop/testDocument
-        GenerateDoc(test, "testDocument", inclusions);
+        GenerateDoc(test, "testDocument", exclusions);
     }
     
     private DocGenerator()
     {
     }
     
-    public static boolean GenerateDoc(SubjectOutlineSummary summary, String filepath, boolean[] fieldInclusions)
+    public static boolean GenerateDoc(SubjectOutlineSummary summary, String filepath, boolean[] fieldExclusions)
     {
         XWPFDocument doc = new XWPFDocument();
         
@@ -122,7 +122,7 @@ public final class DocGenerator
             int i;
             for (i = 0; i < 2; i++)
             {
-                if (fieldInclusions[i] == true)
+                if (fieldExclusions[i] == false)
                 {
                     AddMultipleLines(doc, labels[i], content[i], true);
                 }
@@ -132,7 +132,7 @@ public final class DocGenerator
             
             for (; i < 6; i++)
             {
-                if (fieldInclusions[i] == true)
+                if (fieldExclusions[i] == false)
                 {
                     AddMultipleLines(doc, labels[i], content[i], true);
                 }
