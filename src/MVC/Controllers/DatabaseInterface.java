@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,18 +24,17 @@ public final class DatabaseInterface {
         
     private final String connectionString = "jdbc:derby://localhost:1527/sos_db;create=true;user=omanyte;password=bake";
     private static Statement SQLStatement = null;
-    private int keyNumber;
+    private int keyID;
     
     public DatabaseInterface()
     {
-        keyNumber = getRowCount();
-        keyNumber++;
-        System.out.println("Row count = " + keyNumber);
+        keyID = getRowCount();
+        keyID++;
+        System.out.println("Row count = " + keyID);
     }
     
-    public Connection connectToDB()
+    private Connection connectToDB()
     {
-        
         try
         {
            Connection dbConnection = DriverManager.getConnection(connectionString);
@@ -47,7 +48,7 @@ public final class DatabaseInterface {
         }
     }
     
-    public void disconnectFromDB(Connection dbConnection)
+    private void disconnectFromDB(Connection dbConnection)
     {
         try
         {
@@ -59,60 +60,127 @@ public final class DatabaseInterface {
         }
     }
 
-    public PreparedStatement insertUserDetails(String firstName, String lastName, boolean isActive, String email, int subjectID) throws SQLException
+    //Password should be hashed before it is passed through this method
+    public ResultSet selectUser(String email, String password) throws SQLException
     {
         Connection dbConnection = connectToDB();
+        ResultSet loginData;
         
+        String rawQuery = "Select\n" +
+                            "u.EMAIL, p.PASSWORD\n" +
+                            "\n" +
+                            "From \n" +
+                            "OMANYTE.\"USER\" u\n" +
+                            "join OMANYTE.PASSWORD p on u.ID = p.USER_ID\n" +
+                            "\n" +
+                            "Where\n" +
+                            "u.EMAIL like '%?%' AND\n" +
+                            "p.PASSWORD = '?'";
+        
+        PreparedStatement selectEmailAndPassword = dbConnection.prepareStatement(rawQuery);
+        
+        selectEmailAndPassword.setString(1, email);
+        selectEmailAndPassword.setString(2, password);
+        
+        loginData = selectEmailAndPassword.executeQuery();
+        
+        disconnectFromDB(dbConnection);
+        return loginData;
+    }
+    
+    public boolean authenticateUser(ResultSet data)
+    {
+        String email = null;
+        String password = null;
+        try 
+        {
+            while(data.next())
+            {
+                email = data.getString(1);
+                password = data.getString(2);
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println("Failed at authentication: " + e.getSQLState());
+        }
+        return !(email == null || password == (null));
+    }
+    
+    private boolean insertUserDetails(String firstName, String lastName, boolean isActive, String email, int subjectID)
+    {
+        Connection dbConnection = connectToDB();
+        boolean success = true;
         String rawQuery = "INSERT INTO OMANYTE.\"USER\" VALUES(?, ?, ?, ?, ?, ?)";
-        PreparedStatement insertDetailsStatement = dbConnection.prepareStatement(rawQuery);
         
-        insertDetailsStatement.setInt(1, keyNumber);
-        insertDetailsStatement.setString(2, firstName);
-        insertDetailsStatement.setString(3, lastName);
-        insertDetailsStatement.setBoolean(4, isActive);
-        insertDetailsStatement.setString(5, email);
-        insertDetailsStatement.setInt(6, subjectID);
-        insertDetailsStatement.execute();
-        
-        disconnectFromDB(dbConnection);
-        
-        return insertDetailsStatement;
-    }
-    
-    public PreparedStatement insertPassword(String password) throws SQLException
-    {
-        //Note: password should be hashed before passing it as a parameter to this method
-        Connection dbConnection = connectToDB();
-        String rawQuery = "INSERT INTO OMANYTE.\"PASSWORD\" VALUES(?, ?, ?)";
-        PreparedStatement insertPassword = dbConnection.prepareStatement(rawQuery);
-        
-        insertPassword.setInt(1, keyNumber);
-        insertPassword.setString(2, password);
-        insertPassword.setInt(3, keyNumber);
-        insertPassword.execute();
-        
-        disconnectFromDB(dbConnection);
-        
-        return insertPassword;
-    }
-    
-    public boolean executeRegister(String firstName, String lastName, boolean isActive, String email, int subjectID, String password)
-    {
         try
         {
-            insertUserDetails(firstName, lastName, isActive, email, subjectID);
-            insertPassword(password);
-            keyNumber++;
-            return true;
+            PreparedStatement insertDetailsStatement = dbConnection.prepareStatement(rawQuery);
+
+            insertDetailsStatement.setInt(1, keyID);
+            insertDetailsStatement.setString(2, firstName);
+            insertDetailsStatement.setString(3, lastName);
+            insertDetailsStatement.setBoolean(4, isActive);
+            insertDetailsStatement.setString(5, email);
+            insertDetailsStatement.setInt(6, subjectID);
+            insertDetailsStatement.execute();         
         }
         catch(SQLException e)
         {
-            System.out.print(e.getSQLState());
+            System.out.println("Failure at inserting password: " + e.getSQLState());
+            success = false;            
+        }
+        finally
+        {
+            disconnectFromDB(dbConnection);            
+        }
+
+        return success;
+    }
+    
+    private boolean insertPassword(String password)
+    {
+        //Note: password should be hashed before passing it as a parameter to this method
+        Connection dbConnection = connectToDB();
+        boolean success = true;
+        String rawQuery = "INSERT INTO OMANYTE.\"PASSWORD\" VALUES(?, ?, ?)";
+        try
+        {
+            PreparedStatement insertPassword = dbConnection.prepareStatement(rawQuery);
+            insertPassword.setInt(1, keyID);
+            insertPassword.setString(2, password);
+            insertPassword.setInt(3, keyID);
+            insertPassword.execute();
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Failure at inserting password: " + e.getSQLState());
+            success = false;
+        }
+        finally
+        {
+            disconnectFromDB(dbConnection);
+        }
+        
+        return success;
+    }
+    
+    //Put into different class
+    public boolean executeUserRegistration(String firstName, String lastName, boolean isActive, String email, int subjectID, String password)
+    {
+        if(insertUserDetails(firstName, lastName, isActive, email, subjectID) && insertPassword(password))
+        {
+            keyID++;
+            return true;
+        }
+        else
+        {
+            discardQueryChanges();
             return false;
         }
     }
     
-        private int getRowCount()
+    private int getRowCount()
     {
         ResultSet rawData;
         Connection dbConnection = connectToDB();
