@@ -15,7 +15,7 @@ public class Root {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        BeginningJFrame aBeginning = new BeginningJFrame();
+        BeginningFrame aBeginning = new BeginningFrame();
         aBeginning.setVisible(true);
     }
     

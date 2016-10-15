@@ -11,14 +11,14 @@ import MVC.Controllers.ViewController;
  *
  * @author laurabecker
  */
-public class SignUpFrame extends javax.swing.JFrame {
+public class BeginningFrame extends javax.swing.JFrame {
 
     ViewController ViewControl = new ViewController();
     
     /**
-     * Creates new form SignUpFrame
+     * Creates new form BeginningJFrame
      */
-    public SignUpFrame() {
+    public BeginningFrame() {
         initComponents();
     }
 
@@ -32,18 +32,14 @@ public class SignUpFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,63 +47,55 @@ public class SignUpFrame extends javax.swing.JFrame {
         jInternalFrame1.setVisible(true);
         jInternalFrame1.getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Lantinghei TC", 0, 30)); // NOI18N
-        jLabel1.setText("Sign Up");
-        jInternalFrame1.getContentPane().add(jLabel1);
-        jLabel1.setBounds(180, 80, 130, 39);
-        jInternalFrame1.getContentPane().add(jLabel3);
-        jLabel3.setBounds(210, 6, 0, 0);
+        jButton2.setFont(new java.awt.Font("Lantinghei TC", 0, 28)); // NOI18N
+        jButton2.setText("User");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jInternalFrame1.getContentPane().add(jButton2);
+        jButton2.setBounds(280, 140, 140, 70);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/llama.png"))); // NOI18N
-        jInternalFrame1.getContentPane().add(jLabel4);
-        jLabel4.setBounds(210, 10, 60, 70);
-
-        jLabel2.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
-        jLabel2.setText("First Name:");
-        jInternalFrame1.getContentPane().add(jLabel2);
-        jLabel2.setBounds(130, 130, 80, 20);
-
-        jLabel5.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
-        jLabel5.setText("Last Name:");
-        jInternalFrame1.getContentPane().add(jLabel5);
-        jLabel5.setBounds(130, 170, 80, 20);
-
-        jLabel6.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
-        jLabel6.setText("Email:");
-        jInternalFrame1.getContentPane().add(jLabel6);
-        jLabel6.setBounds(130, 210, 45, 19);
-
-        jLabel7.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
-        jLabel7.setText("Password:");
-        jInternalFrame1.getContentPane().add(jLabel7);
-        jLabel7.setBounds(130, 250, 80, 20);
-
-        jPasswordField1.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
-        jPasswordField1.setText("jPasswordField1");
-        jInternalFrame1.getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(220, 250, 130, 20);
-
-        jTextField1.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
-        jInternalFrame1.getContentPane().add(jTextField1);
-        jTextField1.setBounds(220, 130, 130, 20);
-
-        jButton1.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
-        jButton1.setText("Sign Up");
+        jButton1.setFont(new java.awt.Font("Lantinghei TC", 0, 28)); // NOI18N
+        jButton1.setText("Guest");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jInternalFrame1.getContentPane().add(jButton1);
-        jButton1.setBounds(190, 290, 94, 27);
+        jButton1.setBounds(80, 140, 140, 70);
 
-        jTextField2.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
-        jInternalFrame1.getContentPane().add(jTextField2);
-        jTextField2.setBounds(220, 170, 130, 20);
+        jLabel1.setFont(new java.awt.Font("Lantinghei TC", 0, 28)); // NOI18N
+        jLabel1.setText("Enter as");
+        jInternalFrame1.getContentPane().add(jLabel1);
+        jLabel1.setBounds(86, 83, 104, 37);
 
-        jTextField3.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
-        jInternalFrame1.getContentPane().add(jTextField3);
-        jTextField3.setBounds(220, 210, 130, 20);
+        jLabel2.setFont(new java.awt.Font("Lantinghei TC", 0, 28)); // NOI18N
+        jLabel2.setText("Enter as");
+        jInternalFrame1.getContentPane().add(jLabel2);
+        jLabel2.setBounds(294, 83, 104, 37);
+
+        jLabel3.setFont(new java.awt.Font("Lantinghei TC", 0, 15)); // NOI18N
+        jLabel3.setText("New? Sign Up.");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jInternalFrame1.getContentPane().add(jLabel3);
+        jLabel3.setBounds(383, 305, 96, 20);
+        jInternalFrame1.getContentPane().add(jLabel4);
+        jLabel4.setBounds(6, 6, 0, 0);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/line.png"))); // NOI18N
+        jInternalFrame1.getContentPane().add(jLabel6);
+        jLabel6.setBounds(240, 70, 20, 160);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/llama.png"))); // NOI18N
+        jInternalFrame1.getContentPane().add(jLabel5);
+        jLabel5.setBounds(10, 10, 60, 70);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,11 +111,17 @@ public class SignUpFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ViewControl.OpenNewFrame(this, new LogInFrame());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         ViewControl.OpenNewFrame(this, new GenerateSummaryFrame1());
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {
+        ViewControl.OpenNewFrame(this, new SignUpFrame());
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -145,26 +139,28 @@ public class SignUpFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SignUpFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BeginningFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SignUpFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BeginningFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SignUpFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BeginningFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SignUpFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BeginningFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SignUpFrame().setVisible(true);
+                new BeginningFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -172,10 +168,5 @@ public class SignUpFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }

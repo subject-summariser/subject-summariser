@@ -7,6 +7,7 @@ package UI;
 
 import MVC.Models.SubjectOutlineSummary;
 import FileGenerator.DocGenerator;
+import FileGenerator.ICSGenerator;
 
 /**
  *
@@ -82,6 +83,11 @@ public class GenerateSummaryFrame4 extends javax.swing.JFrame {
         jButton1.setBounds(110, 160, 100, 90);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/calendar icon.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jInternalFrame1.getContentPane().add(jButton3);
         jButton3.setBounds(260, 160, 100, 90);
 
@@ -109,9 +115,13 @@ public class GenerateSummaryFrame4 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:     
-        boolean success;
-        success = DocGenerator.GenerateDoc(SOS, FilePath);
+        DocGenerator.GenerateDoc(SOS, FilePath);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        ICSGenerator.GenerateICS(SOS, FilePath);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,12 +5,16 @@
  */
 package UI;
 
+import MVC.Controllers.ViewController;
+
 /**
  *
  * @author laurabecker
  */
 public class BeginningJFrame extends javax.swing.JFrame {
 
+    ViewController ViewControl = new ViewController();
+    
     /**
      * Creates new form BeginningJFrame
      */
@@ -108,17 +112,14 @@ public class BeginningJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
-        new SignUpFrame().setVisible(true);
+        ViewControl.OpenNewFrame(this, new SignUpFrame());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setVisible(false);
-        new GenerateSummaryFrame1().setVisible(true);
+        ViewControl.OpenNewFrame(this, new GenerateSummaryFrame1());
     }//GEN-LAST:event_jButton1ActionPerformed
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {
-        this.setVisible(false);
-        new SignUpFrame().setVisible(true);
+        ViewControl.OpenNewFrame(this, new SignUpFrame());
     }
     
     /**

@@ -1,38 +1,38 @@
-///*
-// * Generates a .ics file from a summarised subject outline
-// *
-// * @author  Melisa Sachi (11984566)
-// * @date    04/10/16
-// * @version 1.0
-// */
-//
-//package FileGenerator;
-////
-////import SubjectOutlineSummary.SubjectOutlineSummary;
-////import SubjectOutlineSummary.Assessment;
-////import SubjectOutlineSummary.Date;
-//
-//import java.io.File;
-//import java.io.FileOutputStream;
-//import java.io.FileWriter;
-//
-//import java.time.LocalDateTime;
-//
-///* Simulates a static class */
-//public final class ICSGenerator
-//{
-//    private final static String header = "BEGIN:VCALENDAR\n" +
-//                                         "PRODID:-//Subject Outline Summariser\n" +
-//                                         "VERSION:2.0\n" +
-//                                         "CALSCALE:GREGORIAN\n" +
-//                                         "METHOD:PUBLISH\n" +
-//                                         "X-WR-CALNAME:SOS Calendar\n" +
-//                                         "X-WR-TIMEZONE:Australia/Sydney\n" +
-//                                         "X-WR-CALDESC:\n";
-//    private final static String footer = "END:VCALENDAR";
-//    private final static String eventBegin = "BEGIN:VEVENT\n";
-//    private final static String eventEnd = "END:VEVENT\n";
-//    
+/*
+ * Generates a .ics file from a summarised subject outline
+ *
+ * @author  Melisa Sachi (11984566)
+ * @date    04/10/16
+ * @version 1.0
+ */
+
+package FileGenerator;
+
+import MVC.Models.SubjectOutlineSummary;
+import MVC.Models.Assessment;
+import MVC.Models.Date;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+
+import java.time.LocalDateTime;
+
+/* Simulates a static class */
+public final class ICSGenerator
+{
+    private final static String header = "BEGIN:VCALENDAR\n" +
+                                         "PRODID:-//Subject Outline Summariser\n" +
+                                         "VERSION:2.0\n" +
+                                         "CALSCALE:GREGORIAN\n" +
+                                         "METHOD:PUBLISH\n" +
+                                         "X-WR-CALNAME:SOS Calendar\n" +
+                                         "X-WR-TIMEZONE:Australia/Sydney\n" +
+                                         "X-WR-CALDESC:\n";
+    private final static String footer = "END:VCALENDAR";
+    private final static String eventBegin = "BEGIN:VEVENT\n";
+    private final static String eventEnd = "END:VEVENT\n";
+    
 //    public static void main(String[] args)
 //    {
 //        Date date0 = new Date(2, 11, 2016);
@@ -101,102 +101,102 @@
 //        // /Users/Mel/Desktop/testfile
 //        GenerateICS(test, "testfile");
 //    }
-//    
-//    private ICSGenerator()
-//    {
-//    }
-//    
-//    public static boolean GenerateICS(SubjectOutlineSummary summary, String filepath)
-//    {
-//        try
-//        {
-//            File file = new File(filepath + ".ics");
-//            if (!file.exists())
-//            {
-//                file.createNewFile();
-//            }
-//            
-//            try (FileOutputStream out = new FileOutputStream(file))
-//            {
-//                try (FileWriter writer = new FileWriter(file))
-//                {
-//                    writer.append(header);
-//                    int uidNb = 1;
-//                    for (Assessment assessment: summary.GetAssessments())
-//                    {
-//                        if (assessment.GetDueDate() != null)
-//                        {
-//                            String uid = "uid" + Integer.toString(uidNb) + "@example.com";
-//                            writer.append(CreateEventStr(assessment, uid));
-//                            uidNb++;
-//                        }
-//                    }
-//                    writer.append(footer);
-//
-//                    writer.flush();
-//                }
-//
-//                System.out.println("Done");
-//                return true;
-//            }
-//        }
-//        catch (Exception e)
-//        {
-//            System.out.println("Error");
-//            return false;
-//        }        
-//    }
-//    
-//    private static String CreateEventStr(Assessment assessment, String uid)
-//    {
-//        String dueDate = FormatDate(assessment.GetDueDate());
-//        String timestamp = GenerateTimestamp();
-//        
-//        String eventText = eventBegin +
-//                           "DTSTART;VALUE=DATE:" + dueDate + "\n" +
-//                           "DTEND;VALUE=DATE:" + dueDate + "\n" +
-//                           "DTSTAMP:" + timestamp + "\n" +
-//                           "UID:" + uid + "\n" +
-//                           "CREATED:" + timestamp + "\n" +
-//                           "DESCRIPTION:\n" +
-//                           "LAST-MODIFIED:" + timestamp + "\n" +
-//                           "LOCATION:\n" +
-//                           "SEQUENCE:1\n" +
-//                           "STATUS:CONFIRMED\n" +
-//                           "SUMMARY:" + assessment.GetAssessmentName() + "\n" +
-//                           "TRANSP:OPAQUE\n" +
-//                           eventEnd;
-//        
-//        return eventText;
-//    }
-//    
-//    /*
-//     *  Formats date as YYYYMMDD
-//     */
-//    private static String FormatDate(Date date)
-//    {
-//        return FormatDateTimeStr(date.GetYear()) + FormatDateTimeStr(date.GetMonth()) + FormatDateTimeStr(date.GetDay());
-//    }
-//    
-//    private static String FormatDateTimeStr(int nb)
-//    {
-//        if(nb < 10)
-//        {
-//            return "0" + Integer.toString(nb);
-//        }
-//        else
-//        {
-//            return Integer.toString(nb);
-//        }
-//    }
-//    
-//    private static String GenerateTimestamp()
-//    {
-//        LocalDateTime dateTime = LocalDateTime.now();
-//        
-//        String dateStr = FormatDateTimeStr(dateTime.getYear()) + FormatDateTimeStr(dateTime.getMonthValue()) + FormatDateTimeStr(dateTime.getDayOfMonth()) +
-//                         "T" + FormatDateTimeStr(dateTime.getHour()) + FormatDateTimeStr(dateTime.getMinute()) + FormatDateTimeStr(dateTime.getSecond());     
-//        
-//        return dateStr;
-//    }
-//}
+    
+    private ICSGenerator()
+    {
+    }
+    
+    public static boolean GenerateICS(SubjectOutlineSummary summary, String filepath)
+    {
+        try
+        {
+            File file = new File(filepath + ".ics");
+            if (!file.exists())
+            {
+                file.createNewFile();
+            }
+            
+            try (FileOutputStream out = new FileOutputStream(file))
+            {
+                try (FileWriter writer = new FileWriter(file))
+                {
+                    writer.append(header);
+                    int uidNb = 1;
+                    for (Assessment assessment: summary.getAssessments())
+                    {
+                        if (assessment.getDueDate()!= null)
+                        {
+                            String uid = "uid" + Integer.toString(uidNb) + "@example.com";
+                            writer.append(CreateEventStr(assessment, uid));
+                            uidNb++;
+                        }
+                    }
+                    writer.append(footer);
+
+                    writer.flush();
+                }
+
+                System.out.println("Done");
+                return true;
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error");
+            return false;
+        }        
+    }
+    
+    private static String CreateEventStr(Assessment assessment, String uid)
+    {
+        String dueDate = FormatDate(assessment.getDueDate());
+        String timestamp = GenerateTimestamp();
+        
+        String eventText = eventBegin +
+                           "DTSTART;VALUE=DATE:" + dueDate + "\n" +
+                           "DTEND;VALUE=DATE:" + dueDate + "\n" +
+                           "DTSTAMP:" + timestamp + "\n" +
+                           "UID:" + uid + "\n" +
+                           "CREATED:" + timestamp + "\n" +
+                           "DESCRIPTION:\n" +
+                           "LAST-MODIFIED:" + timestamp + "\n" +
+                           "LOCATION:\n" +
+                           "SEQUENCE:1\n" +
+                           "STATUS:CONFIRMED\n" +
+                           "SUMMARY:" + assessment.getAssessmentName() + "\n" +
+                           "TRANSP:OPAQUE\n" +
+                           eventEnd;
+        
+        return eventText;
+    }
+    
+    /*
+     *  Formats date as YYYYMMDD
+     */
+    private static String FormatDate(Date date)
+    {
+        return FormatDateTimeStr(date.GetYear()) + FormatDateTimeStr(date.GetMonth()) + FormatDateTimeStr(date.GetDay());
+    }
+    
+    private static String FormatDateTimeStr(int nb)
+    {
+        if(nb < 10)
+        {
+            return "0" + Integer.toString(nb);
+        }
+        else
+        {
+            return Integer.toString(nb);
+        }
+    }
+    
+    private static String GenerateTimestamp()
+    {
+        LocalDateTime dateTime = LocalDateTime.now();
+        
+        String dateStr = FormatDateTimeStr(dateTime.getYear()) + FormatDateTimeStr(dateTime.getMonthValue()) + FormatDateTimeStr(dateTime.getDayOfMonth()) +
+                         "T" + FormatDateTimeStr(dateTime.getHour()) + FormatDateTimeStr(dateTime.getMinute()) + FormatDateTimeStr(dateTime.getSecond());     
+        
+        return dateStr;
+    }
+}
