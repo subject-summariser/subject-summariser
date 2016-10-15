@@ -43,7 +43,7 @@ public final class DatabaseInterface {
         }
         catch(SQLException e)
         {
-            System.out.println("Failure connecting to database: " + e.getSQLState());
+            System.out.println("Failure connecting to database: " + e.getSQLState() + " " + e);
             return null;
         }
     }
@@ -61,31 +61,34 @@ public final class DatabaseInterface {
     }
 
     //Password should be hashed before it is passed through this method
-    public ResultSet selectUser(String email, String password) throws SQLException
+    public String[] selectUser(String email, String password)
     {
+        String data[] = new String[2];
         Connection dbConnection = connectToDB();
         ResultSet loginData;
         
-        String rawQuery = "Select\n" +
-                            "u.EMAIL, p.PASSWORD\n" +
-                            "\n" +
-                            "From \n" +
-                            "OMANYTE.\"USER\" u\n" +
-                            "join OMANYTE.PASSWORD p on u.ID = p.USER_ID\n" +
-                            "\n" +
-                            "Where\n" +
-                            "u.EMAIL like '%?%' AND\n" +
-                            "p.PASSWORD = '?'";
+        String rawQuery = 
+                "Select u.EMAIL, p.PASSWORD From OMANYTE.\"USER\" u join OMANYTE.PASSWORD p on u.ID = p.USER_ID Where u.EMAIL like '%" + email + "%' AND p.PASSWORD = '" + password + "'";
         
-        PreparedStatement selectEmailAndPassword = dbConnection.prepareStatement(rawQuery);
-        
-        selectEmailAndPassword.setString(1, email);
-        selectEmailAndPassword.setString(2, password);
-        
-        loginData = selectEmailAndPassword.executeQuery();
+        try
+        {
+            PreparedStatement selectEmailAndPassword = dbConnection.prepareStatement(rawQuery);
+
+            loginData = selectEmailAndPassword.executeQuery();
+            while(loginData.next())
+            {
+                data[0] = loginData.getString(1);
+                data[1] = loginData.getString(2);
+            }
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Failure at selectUser: " + e.getSQLState() + " " + e);
+        }
+
         
         disconnectFromDB(dbConnection);
-        return loginData;
+        return data;
     }
     
     public boolean authenticateUser(ResultSet data)
@@ -97,12 +100,12 @@ public final class DatabaseInterface {
             while(data.next())
             {
                 email = data.getString(1);
-                password = data.getString(2);
+                password = data.getString(1);
             }
         } 
         catch (SQLException e) 
         {
-            System.out.println("Failed at authentication: " + e.getSQLState());
+            System.out.println("Failed at authentication:" + e.getSQLState() + " " + e);
         }
         return !(email == null || password == (null));
     }

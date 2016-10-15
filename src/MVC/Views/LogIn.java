@@ -6,6 +6,10 @@
 package MVC.Views;
 
 import MVC.Controllers.ViewController;
+import MVC.Controllers.DatabaseInterface;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -90,7 +94,19 @@ public class LogIn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ViewControl.OpenNewFrame(this, new GenerateSummary1());
+        DatabaseInterface aDatabase = new DatabaseInterface();
+        
+        boolean success;
+        
+        String data[] = aDatabase.selectUser(jTextField3.getText(), Integer.toString(jTextField2.getText().hashCode()));
+        if(data[0].equals(jTextField3.getText()) && data[1].equals(Integer.toString(jTextField2.getText().hashCode())))
+        {
+            ViewControl.OpenNewFrame(this, new GenerateSummary1());
+        }
+        else
+        {
+            System.out.println("Login failure...");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
