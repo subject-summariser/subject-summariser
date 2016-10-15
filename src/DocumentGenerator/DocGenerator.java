@@ -105,17 +105,17 @@ public final class DocGenerator
         {            
             String labels[] = {"Key contacts: ",
                                "Content (topics): ",
-                               "Minimum requirements: ",
                                "Supplementary Assessments: ",
                                "Late Penalty: ",
-                               "Required Texts: "};
+                               "Required Texts: ",
+                               "Minimum Requirements: "};
             
-            String content[] = {summary.GetKeyContacts(),
-                                summary.GetSubjectContent(),
-                                summary.GetMinimumReq(),
-                                summary.GetSuppAssessments(),
-                                summary.GetLateAssessmentPenalty(),
-                                summary.GetReqTexts()};
+            String content[] = {summary.getKeyContacts(),
+                                summary.getSubjectContent(),
+                                summary.getSuppAssessments(),
+                                summary.getLateAssessmentPenalty(),
+                                summary.getReqTexts(),
+                                summary.getMinimumReq()};
             
             AddHeading(doc, summary.GetSubjectNb() + " " + summary.GetSubjectName());
             
