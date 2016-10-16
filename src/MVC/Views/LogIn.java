@@ -7,9 +7,7 @@ package MVC.Views;
 
 import MVC.Controllers.ViewController;
 import MVC.Controllers.DatabaseInterface;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -20,7 +18,6 @@ public class LogIn extends javax.swing.JFrame {
 
     
     ViewController ViewControl = new ViewController();
-    private int userID;
     /**
      * Creates new form LogIn
      */
@@ -98,20 +95,30 @@ public class LogIn extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DatabaseInterface aDatabase = new DatabaseInterface();
         
-        boolean success;
+        String username = jTextField3.getText();
+        String password = Integer.toString(jTextField2.getText().hashCode());
         
-        String data[] = aDatabase.selectUser(jTextField3.getText(), Integer.toString(jTextField2.getText().hashCode()));
-        if(data[0] == null || data[1] == null)
+        if(username.equals("") || password.equals("0"))
         {
-            System.out.println("Login failure...");
-            JOptionPane.showMessageDialog(null, "Incorrect username or password. Please try again.");
+            JOptionPane.showMessageDialog(null, "Please fill out all fields");
         }
-        else if(data[0].equals(jTextField3.getText()) && data[1].equals(Integer.toString(jTextField2.getText().hashCode())))
+        else
         {
-            //get user id and save it somewhere
-            ViewControl.setUserID(Integer.parseInt(data[2])); 
-            ViewControl.OpenNewFrame(this, new GenerateSummary1());
+             String data[] = aDatabase.selectUser(username, password);
+        
+            if(data[0] == null || data[1] == null)
+            {
+                System.out.println("Login failure...");
+                JOptionPane.showMessageDialog(null, "Incorrect username or password. Please try again.");
+            }
+            else if(data[0].equals(username) && data[1].equals(password))
+            {
+                //get user id and save it somewhere
+                ViewControl.setUserID(Integer.parseInt(data[2])); 
+                ViewControl.OpenNewFrame(this, new GenerateSummary1());
+            }   
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
