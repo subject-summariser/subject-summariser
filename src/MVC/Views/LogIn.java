@@ -118,7 +118,6 @@ public class LogIn extends javax.swing.JFrame {
                 ViewControl.OpenNewFrame(this, new GenerateSummary1());
             }   
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
