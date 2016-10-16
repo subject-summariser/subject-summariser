@@ -5,7 +5,9 @@
  */
 package MVC.Views;
 
+import MVC.Controllers.DatabaseInterface;
 import MVC.Controllers.ViewController;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,6 +16,7 @@ import MVC.Controllers.ViewController;
 public class SignUp extends javax.swing.JFrame {
 
     ViewController ViewControl = new ViewController();
+    DatabaseInterface databaseInterface = new DatabaseInterface();
     
     /**
      * Creates new form SignUp
@@ -111,7 +114,19 @@ public class SignUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ViewControl.OpenNewFrame(this, new GenerateSummary1());
+        String firstName = jTextField2.getText();
+        String lastName = jTextField3.getText();
+        String email = jTextField6.getText();
+        String password = Integer.toString(jTextField5.getText().hashCode());
+        
+        if(databaseInterface.executeUserRegistration(firstName, lastName, true, email, 99999, password))
+        {
+            ViewControl.OpenNewFrame(this, new GenerateSummary1());   
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Unable to connect to create user. Please try again.");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

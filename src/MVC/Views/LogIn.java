@@ -10,6 +10,7 @@ import MVC.Controllers.DatabaseInterface;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -106,6 +107,7 @@ public class LogIn extends javax.swing.JFrame {
         else
         {
             System.out.println("Login failure...");
+            JOptionPane.showMessageDialog(null, "Incorrect username or password. Please try again.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

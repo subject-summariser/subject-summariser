@@ -157,7 +157,7 @@ public final class DatabaseInterface {
         }
         catch(SQLException e)
         {
-            System.out.println("Failure at inserting password: " + e.getSQLState());
+            System.out.println("Failure at inserting password: " + e.getSQLState() + " " + e);
             success = false;
         }
         finally
