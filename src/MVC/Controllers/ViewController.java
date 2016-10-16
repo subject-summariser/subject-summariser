@@ -13,6 +13,8 @@ import javax.swing.JFrame;
  */
 public class ViewController {
     
+    public static int userID;
+    
     public ViewController()
     {
     }
@@ -22,6 +24,16 @@ public class ViewController {
         closeFrame.setVisible(false);
         closeFrame.dispose();
         openFrame.setVisible(true);
+    }
+    
+    public int getUserID()
+    {
+        return userID;
+    }
+    
+    public void setUserID(int id)
+    {
+        userID = id;
     }
     
 }

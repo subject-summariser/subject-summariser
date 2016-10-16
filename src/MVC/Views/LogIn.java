@@ -20,6 +20,7 @@ public class LogIn extends javax.swing.JFrame {
 
     
     ViewController ViewControl = new ViewController();
+    private int userID;
     /**
      * Creates new form LogIn
      */
@@ -107,6 +108,8 @@ public class LogIn extends javax.swing.JFrame {
         }
         else if(data[0].equals(jTextField3.getText()) && data[1].equals(Integer.toString(jTextField2.getText().hashCode())))
         {
+            //get user id and save it somewhere
+            ViewControl.setUserID(Integer.parseInt(data[2])); 
             ViewControl.OpenNewFrame(this, new GenerateSummary1());
         }
     }//GEN-LAST:event_jButton1ActionPerformed

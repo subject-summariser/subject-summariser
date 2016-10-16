@@ -119,14 +119,23 @@ public class SignUp extends javax.swing.JFrame {
         String email = jTextField6.getText();
         String password = Integer.toString(jTextField5.getText().hashCode());
         
-        if(databaseInterface.executeUserRegistration(firstName, lastName, true, email, 99999, password))
+        if(databaseInterface.checkDuplicateEmail(email))
         {
-            ViewControl.OpenNewFrame(this, new GenerateSummary1());   
+            if(databaseInterface.executeUserRegistration(firstName, lastName, true, email, 99999, password))
+            {
+                ViewControl.OpenNewFrame(this, new GenerateSummary1());   
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Unable to connect to create user. Please try again.");
+            }         
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Unable to connect to create user. Please try again.");
+            JOptionPane.showMessageDialog(null, "Email already in use.");
         }
+        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -63,12 +63,14 @@ public final class DatabaseInterface {
     //Password should be hashed before it is passed through this method
     public String[] selectUser(String email, String password)
     {
-        String data[] = new String[2];
+        String data[] = new String[3];
         Connection dbConnection = connectToDB();
         ResultSet loginData;
         
         String rawQuery = 
-                "Select u.EMAIL, p.PASSWORD From OMANYTE.\"USER\" u join OMANYTE.PASSWORD p on u.ID = p.USER_ID Where u.EMAIL like '%" + email + "%' AND p.PASSWORD = '" + password + "'";
+                "Select u.EMAIL, p.PASSWORD, u.ID From OMANYTE.\"USER\" "
+                + "u join OMANYTE.PASSWORD p on u.ID = p.USER_ID "
+                + "Where u.EMAIL like '%" + email + "%' AND p.PASSWORD = '" + password + "'";
         
         try
         {
@@ -79,6 +81,7 @@ public final class DatabaseInterface {
             {
                 data[0] = loginData.getString(1);
                 data[1] = loginData.getString(2);
+                data[2] = Integer.toString(loginData.getInt(3));
             }
         }
         catch(SQLException e)
@@ -89,6 +92,30 @@ public final class DatabaseInterface {
         
         disconnectFromDB(dbConnection);
         return data;
+    }
+    
+    public boolean checkDuplicateEmail(String email)
+    {
+        Connection dbConnection = connectToDB();
+        String anEmail = null;
+        String rawQuery = "SELECT * FROM OMANYTE.\"USER\" WHERE EMAIL LIKE '" + email + "'";
+        ResultSet emailData;
+        
+        try
+        {
+            PreparedStatement selectEmail = dbConnection.prepareStatement(rawQuery);
+            emailData = selectEmail.executeQuery();
+            
+            while(emailData.next())
+            {
+                anEmail = emailData.getString(1);
+            }
+        }
+        catch (SQLException e)
+        {
+            System.out.println("Failure at checkEmail" + e.getSQLState() + " " + e);
+        }
+        return anEmail == null;
     }
     
     public boolean authenticateUser(ResultSet data)

@@ -14,7 +14,6 @@ import MVC.Controllers.ViewController;
 public class GenerateSummary1 extends javax.swing.JFrame {
 
     ViewController ViewControl = new ViewController();
-    
     /**
      * Creates new form GenerateSummary1
      */
