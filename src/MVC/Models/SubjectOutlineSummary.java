@@ -14,29 +14,60 @@ import java.util.LinkedList;
  */
 public class SubjectOutlineSummary {
     
-    private final int SubjectNb;
+    private int SubjectNb;
+
+    public void setSubjectNb(int SubjectNb) {
+        this.SubjectNb = SubjectNb;
+    }
+
+    public void setKeyContacts(String KeyContacts) {
+        this.KeyContacts = KeyContacts;
+    }
+
+    public void setSubjectContent(String SubjectContent) {
+        this.SubjectContent = SubjectContent;
+    }
+
+    public void setAssessments(LinkedList<Assessment> Assessments) {
+        this.Assessments = Assessments;
+    }
+
+    public void setMinimumReq(String MinimumReq) {
+        this.MinimumReq = MinimumReq;
+    }
+
+    public void setSuppAssessments(String SuppAssessments) {
+        this.SuppAssessments = SuppAssessments;
+    }
+
+    public void setLateAssessmentPenalty(String LateAssessmentPenalty) {
+        this.LateAssessmentPenalty = LateAssessmentPenalty;
+    }
+
+    public void setReqTexts(String ReqTexts) {
+        this.ReqTexts = ReqTexts;
+    }
     private String SubjectName;
-    private final String KeyContacts;
-    private final String SubjectContent;
+    private String KeyContacts;
+    private String SubjectContent;
     private LinkedList<Assessment> Assessments;
-    private final String MinimumReq;
-    private final String SuppAssessments;
-    private final String LateAssessmentPenalty;
-    private final String ReqTexts;
+    private String MinimumReq;
+    private String SuppAssessments;
+    private String LateAssessmentPenalty;
+    private String ReqTexts;
     
 //    public SubjectOutlineSummary(int subjectNb, String subjectName, String keyContacts,
 //                                 String subjectContent, LinkedList<Assessment> assessments, String minimumReq,
 //                                 String suppAssessments, String lateAssessmentPenalty, String reqTexts)
     public SubjectOutlineSummary()
     {
-        Assessments = new LinkedList<>(); 
-        SubjectNb = 0;
-        KeyContacts = "...";
-        SubjectContent = "...";
-        MinimumReq = "...";
-        SuppAssessments = "...";
-        LateAssessmentPenalty = "...";
-        ReqTexts = "...";
+        Assessments = new LinkedList<>();
+        KeyContacts = null;
+        SubjectContent = null;
+        MinimumReq = null;
+        SuppAssessments = null;
+        LateAssessmentPenalty = null;
+        ReqTexts = null;
 //        SubjectNb = subjectNb;
 //        SubjectName = subjectName;
 //        KeyContacts = keyContacts;
@@ -72,17 +103,10 @@ public class SubjectOutlineSummary {
         return Assessments;
     }
 
-    public void setAssessments(LinkedList<Assessment> assessments) {
-        Assessments = assessments;
+    public void addAssessments(Assessment assessments) {
+        Assessments.add(assessments);
     }
     
-    public void addAssessment(String name, String type) {
-        Assessment a = new Assessment();
-        a.setAssessmentName(name);
-        a.setType(type);
-        Assessments.add(a);
-    }
-
     public String getMinimumReq() {
         return MinimumReq;
     }
