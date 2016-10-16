@@ -28,13 +28,9 @@ public class PythonJava {
     {
     }
     
-    public void toSOS()
+    public void toSOS(String s)
     {      
-        // Fix to be dynamic
-        sos.setSubjectName(summary.get(1));
-        sos.addAssessment(summary.get(2), summary.get(3));
-        sos.addAssessment(summary.get(4), summary.get(5));
-        sos.addAssessment(summary.get(6), summary.get(7));
+        //Insert your code here Mel
     }
     
     public boolean initPython(String filePath) 
@@ -71,10 +67,11 @@ public class PythonJava {
 
             System.out.println("Here is the standard output of the command:\n");
             while ((s = stdInput.readLine()) != null) {
-                summary.add(s);                             ///////////////////////////////
-                System.out.println(summary.toString());     /////////////////////////////
+                summary.add(s);                             
+                System.out.println(summary.toString());     
+                toSOS(s);                                        
+
             }
-            toSOS();                                        ///////////////////////////////
         } catch (IOException ex) {
 //            Logger.getLogger(SOSProto.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "DEBUG:" + ex);
