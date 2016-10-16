@@ -15,17 +15,29 @@ public class Assessment {
     
     private String AssessmentName;
     private String Type;
-    private final String Groupwork;
-    private final int Weighting;
-    private final String Description;
-    private final Date DueDate;
+    private String Groupwork;
+
+    public void setGroupwork(String Groupwork) {
+        this.Groupwork = Groupwork;
+    }
+
+    public void setWeighting(int Weighting) {
+        this.Weighting = Weighting;
+    }
+
+    public void setDescription(String Description) {
+        this.Description = Description;
+    }
+
+    public void setDueDate(Date DueDate) {
+        this.DueDate = DueDate;
+    }
+    private int Weighting;
+    private String Description;
+    private Date DueDate;
     
     public Assessment()
     {
-        Groupwork = "Group";
-        Weighting = 666;
-        Description = "Llamma";
-        DueDate = new Date(1, 1, 1);
     }
     
 //    public Assessment(String assessmentName, String type, String groupwork, int weighting, String description, Date dueDate)
