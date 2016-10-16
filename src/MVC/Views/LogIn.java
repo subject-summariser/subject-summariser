@@ -100,14 +100,14 @@ public class LogIn extends javax.swing.JFrame {
         boolean success;
         
         String data[] = aDatabase.selectUser(jTextField3.getText(), Integer.toString(jTextField2.getText().hashCode()));
-        if(data[0].equals(jTextField3.getText()) && data[1].equals(Integer.toString(jTextField2.getText().hashCode())))
-        {
-            ViewControl.OpenNewFrame(this, new GenerateSummary1());
-        }
-        else
+        if(data[0] == null || data[1] == null)
         {
             System.out.println("Login failure...");
             JOptionPane.showMessageDialog(null, "Incorrect username or password. Please try again.");
+        }
+        else if(data[0].equals(jTextField3.getText()) && data[1].equals(Integer.toString(jTextField2.getText().hashCode())))
+        {
+            ViewControl.OpenNewFrame(this, new GenerateSummary1());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
