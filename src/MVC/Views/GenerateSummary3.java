@@ -56,7 +56,7 @@ public class GenerateSummary3 extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Lantinghei TC", 0, 30)); // NOI18N
         jLabel1.setText("Generate a summary");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
 
         jCheckBox1.setFont(new java.awt.Font("Lantinghei TC", 0, 13)); // NOI18N
         jCheckBox1.setText("Key Contacts");

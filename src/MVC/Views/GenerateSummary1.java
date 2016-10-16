@@ -50,7 +50,7 @@ public class GenerateSummary1 extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Lantinghei TC", 0, 30)); // NOI18N
         jLabel1.setText("Generate a summary");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Lantinghei TC", 0, 26)); // NOI18N
         jLabel2.setText("Drag and Drop");
@@ -67,7 +67,7 @@ public class GenerateSummary1 extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/Generate box.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
