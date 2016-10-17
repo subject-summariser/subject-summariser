@@ -90,8 +90,8 @@ public class SubjectOutlineSummary {
         return Assessments;
     }
 
-    public void addAssessments(Assessment assessments) {
-        Assessments.add(assessments);
+    public void addAssessment(Assessment assessment) {
+        Assessments.add(assessment);
     }
     
     public String getMinimumReq() {

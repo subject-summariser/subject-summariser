@@ -35,48 +35,47 @@ public class PythonInterface {
         
         switch (splitStr[0])
         {
-            case ("Subject"):
+            case ("<Subject"):
                 String subjStr[] = splitStr[1].split(" ", 2);
                 sos.setSubjectNb(Integer.parseInt(subjStr[0]));
                 sos.setSubjectName(subjStr[1]);
                 break;
-            case ("Contact"):
+            case ("<Contact"):
                 sos.setKeyContacts(splitStr[1]);
                 break;
-            case ("Description"):
-            case ("Content"):
+            case ("<Content"):
                 sos.setSubjectContent(splitStr[1]);
                 break;
-            case ("Minimum requirements"):
+            case ("<Minimum requirements"):
                 sos.setMinimumReq(splitStr[1]);
                 break;
-            case ("Supplementary assessments"):
+            case ("<Supplementary assessments"):
                 sos.setSuppAssessments(splitStr[1]);
                 break;
-            case ("Late Penalty"):
+            case ("<Late Penalty"):
                 sos.setLateAssessmentPenalty(splitStr[1]);
                 break;
-            case ("Required texts"):
+            case ("<Required texts"):
                 sos.setReqTexts(splitStr[1]);
                 break;
-            case ("Task"):
+            case ("<Task"):
                 ass = new Assessment();
                 ass.setAssessmentName(splitStr[1]);
                 break;
-            case ("Type"):
+            case ("<Type"):
                 if (ass != null)
                 {
                     ass.setType(splitStr[1]);
                 }
                 break;
-            case ("Weight"):
+            case ("<Weight"):
                 if (ass != null)
                 {
                     splitStr[1] = splitStr[1].replace("%", "");
                     ass.setWeighting(Integer.parseInt(splitStr[1]));
                 }
                 break;
-            case ("Due"):
+            case ("<Due"):
                 if (ass != null && !(splitStr[1].equals("Due date not found")))  ////////////////////////////
                 {
                     String dateStr[] = splitStr[1].split("/", 3);
@@ -86,9 +85,12 @@ public class PythonInterface {
                     ass.setDueDate(date);
                 }
                 break;
-            case ("Group"):
+            case ("<Group"):
                 ass.setGroupwork(splitStr[1]);
-                sos.addAssessments(ass);
+                break;
+            case ("<Description"):
+                ass.setDescription(splitStr[1]);
+                sos.addAssessment(ass);
                 break;
             default:
                 System.out.println("toSOS: unexpected field found");
@@ -121,6 +123,7 @@ public class PythonInterface {
     {
         String runPyCmd = "python SummariseSubjectOutline.py --path \"" + filePath + "\"";
         String s;
+        String currentField = "";
         try {
             Process p;
             p = Runtime.getRuntime().exec(runPyCmd, null,
@@ -131,8 +134,20 @@ public class PythonInterface {
             System.out.println("Here is the standard output of the command:\n");
             while ((s = stdInput.readLine()) != null) {
                 summary.add(s);                             
-                System.out.println(summary.toString());     
-                toSOS(s);
+                System.out.println(summary.toString());
+                
+                if (s.startsWith("<"))
+                {
+                    currentField = s;
+                }
+                else if (s.equals(">"))
+                {
+                    toSOS(currentField);
+                }
+                else
+                {
+                    currentField += "\n" + s;
+                }
             }
         } catch (IOException ex) {
 //            Logger.getLogger(SOSProto.class.getName()).log(Level.SEVERE, null, ex);

@@ -87,7 +87,7 @@ public class PythonJava {
                 break;
             case ("Group"):
                 ass.setGroupwork(splitStr[1]);
-                sos.addAssessments(ass);
+                sos.addAssessment(ass);
                 break;
             default:
                 System.out.println("toSOS: unexpected field found");
