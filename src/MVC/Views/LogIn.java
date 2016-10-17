@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,6 +24,7 @@ public class LogIn extends javax.swing.JFrame {
     /**
      * Creates new form LogIn
      */
+    
     public LogIn() {
         initComponents();
     }
@@ -41,10 +43,10 @@ public class LogIn extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,9 +67,6 @@ public class LogIn extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Lantinghei TC", 0, 18)); // NOI18N
         jLabel5.setText("Password:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, -1, -1));
-
-        jTextField2.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 160, 30));
 
         jTextField3.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 160, 30));
@@ -96,6 +95,9 @@ public class LogIn extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 20, 30));
 
+        jPasswordField1.setText("jPasswordField1");
+        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 160, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,34 +115,60 @@ public class LogIn extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //        DatabaseInterface aDatabase = new DatabaseInterface();
         
-//        String data[] = aDatabase.selectUser(jTextField3.getText(), Integer.toString(jPasswordField1.hashCode()));
-//        if(data[0].equals(jTextField3.getText()) && data[1].equals(Integer.toString(jPasswordField1.hashCode())))
-//        {
-            
-            ViewControl.OpenNewFrame(this, new UserFiles());
-//        }
-//        else
-//        {
-            System.out.println("Login failure...");
-//        }
+        String username = jTextField3.getText();
+        //String password = Integer.toString(jTextField2.getText().hashCode());
+        
+        if(username.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Please fill out all fields");
+        }
+        else
+        {
+//            String data[] = aDatabase.selectUser(username, password);
+        
+//            if(data[0] == null || data[1] == null)
+//            {
+//                System.out.println("Login failure...");
+//                JOptionPane.showMessageDialog(null, "Incorrect username or password. Please try again.");
+//            }
+//            else if(data[0].equals(username) && data[1].equals(password))
+//            {
+                //get user id and save it somewhere
+//                ViewControl.setUserID(Integer.parseInt(data[2])); 
+                ViewControl.OpenNewFrame(this, new UserFiles());
+//            }   
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
-
-//        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-//        {
-//            DatabaseInterface aDatabase = new DatabaseInterface();
-
-//            String data[] = aDatabase.selectUser(jTextField3.getText(), Integer.toString(jPasswordField1.hashCode()));
-//            if(data[0].equals(jTextField3.getText()) && data[1].equals(Integer.toString(jPasswordField1.hashCode())))
-//            {
+        DatabaseInterface aDatabase = new DatabaseInterface();
+        
+        String username = jTextField3.getText();
+        //String password = Integer.toString(jTextField2.getText().hashCode());
+        
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+        if(username.equals(""))// || password.equals("0"))
+        {
+            JOptionPane.showMessageDialog(null, "Please fill out all fields");
+        }
+        else
+        {
+            //String data[] = aDatabase.selectUser(username, password);
+        
+            //if(data[0] == null || data[1] == null)
+           // {
+              //  System.out.println("Login failure...");
+             //   JOptionPane.showMessageDialog(null, "Incorrect username or password. Please try again.");
+           // }
+           // else if(data[0].equals(username) && data[1].equals(password))
+           // {
+                //get user id and save it somewhere
+               // ViewControl.setUserID(Integer.parseInt(data[2])); 
                 ViewControl.OpenNewFrame(this, new UserFiles());
-//            }
-//            else
-//            {
-//                System.out.println("Login failure...");
-//            }
-//        }
+           // }   
+        }
+        }
     }//GEN-LAST:event_jButton1KeyPressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -190,7 +218,7 @@ public class LogIn extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }

@@ -31,20 +31,6 @@ class ContactInfo:
                 self.TutorContacts.append(Contact(text, i))
                 return
 
-class Date:
-    Day = ""
-    Month = ""
-    Year = ""
-    
-    def __init__(self, text):
-        raise NotImplementedError
-
-class TaskType:
-    Type = ""
-    
-    def __init__(self, text):
-        raise NotImplementedError
-
 class SubjectName:
     Name = ""
     
@@ -55,31 +41,71 @@ class RequiredTexts:
     Texts = []
     
     def __init__(self, text):
-        raise NotImplementedError
+        for i in range(0, len(text)):
+            if text[i].lower().find('required texts') == 0:
+                for j in range(i+1, len(text)):
+                    if text[j] == "\n":
+                        break
+                    self.Texts.append(text[j])
+                return
 
 class SubjectTopics:
     Topics = []
     
     def __init__(self, text):
-        raise NotImplementedError
+        for i in range(0, len(text)):
+            if text[i].lower().find("content (topics)") == 0:
+                for j in range(i+1, len(text)):
+                    if text[j].replace("\n",'') == "Program" or len(text[j]) > 80:
+                        return
+                    if text[j] != "\n" and len(text[j].replace("\n",'')) > 3: 
+                        self.Topics.append(text[j])
 
 class SupplementaryTasks:
     Tasks = ""
     
     def __init__(self, text):
-        raise NotImplementedError
+        for i in range(0, len(text)):
+            if text[i].lower().find('supplementary assessment') == 0:
+                for j in range(i+1, len(text)):
+                    if text[j] == "\n" or text[j].lower().find("minimum requirements") == 0:
+                        break
+                    self.Tasks += text[j]
+                return
 
 class LatePenalty:
     Penalty = ""
     
     def __init__(self, text):
-        raise NotImplementedError
+        for i in range(0, len(text)):
+            line_num = -1
+            if text[i].lower().find("late submission") != -1:
+                penalty_index = -1
+                if text[i].lower().find("%") != -1:
+                    penalty_index = text[i].lower().find("%")
+                    line_num = i
+                elif text[i+1].lower().find("%") != -1:
+                    penalty_index = text[i+1].lower().find("%")
+                    line_num = i + 1
+
+                if penalty_index == -1:
+                    return
+
+                self.Penalty = text[line_num][penalty_index-2:penalty_index+1]
+                return
+            
 
 class PassCriteria:
     Criteria = ""
     
     def __init__(self, text):
-        raise NotImplementedError
+        for i in range(0, len(text)):
+            if text[i].lower().find("minimum requirements") == 0:
+                for j in range(i+1, len(text)):
+                    if text[j].lower().find("required texts") == 0 or j > i + 10:
+                        return  
+                    if text[j] != "\n":
+                        self.Criteria += text[j]
 
 class ProgramStartDate:
     StartDate = ""

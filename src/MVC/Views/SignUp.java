@@ -46,7 +46,6 @@ public class SignUp extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jTextField6 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
@@ -88,9 +87,6 @@ public class SignUp extends javax.swing.JFrame {
         jTextField3.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 150, -1));
 
-        jTextField5.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 150, -1));
-
         jButton1.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
         jButton1.setText("Sign Up");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +110,7 @@ public class SignUp extends javax.swing.JFrame {
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 20, 30));
 
         jPasswordField1.setText("jPasswordField1");
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 150, 20));
+        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 150, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,30 +127,36 @@ public class SignUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DatabaseInterface aDatabase = new DatabaseInterface();
+//        DatabaseInterface databaseInterface = new DatabaseInterface();
         
-        String username = jTextField3.getText();
-        String password = Integer.toString(jTextField2.getText().hashCode());
+        String firstName = jTextField2.getText();
+        String lastName = jTextField3.getText();
+        String email = jTextField6.getText();
+        //String password = Integer.toString(jTextField5.getText().hashCode());
         
-        if(username.equals("") || password.equals("0"))
+        if(firstName==null || lastName==null || email==null)
         {
-            JOptionPane.showMessageDialog(null, "Please fill out all fields");
+            JOptionPane.showMessageDialog(null, "Please fill out all fields.");
         }
         else
         {
-            String data[] = aDatabase.selectUser(username, password);
-        
-            if(data[0] == null || data[1] == null)
-            {
-                System.out.println("Login failure...");
-                JOptionPane.showMessageDialog(null, "Incorrect username or password. Please try again.");
-            }
-            else if(data[0].equals(username) && data[1].equals(password))
-            {
-                //get user id and save it somewhere
-                ViewControl.setUserID(Integer.parseInt(data[2])); 
-                ViewControl.OpenNewFrame(this, new GenerateSummary1());
-            }   
+//            if(databaseInterface.checkDuplicateEmail(email))
+//            {
+//              if(databaseInterface.executeUserRegistration(firstName, lastName, true, email, password))
+//                {
+//                    String data[] = databaseInterface.selectUser(email, password);
+//                    ViewControl.setUserID(Integer.parseInt(data[2]));
+                    ViewControl.OpenNewFrame(this, new GenerateSummary1());   
+//                }
+//                else
+//                {
+                    JOptionPane.showMessageDialog(null, "Unable to connect to create user. Please try again.");
+//                }         
+//            }
+//            else
+//            {
+//                JOptionPane.showMessageDialog(null, "Email already in use.");
+//            }   */
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -218,7 +220,6 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
