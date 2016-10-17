@@ -79,6 +79,7 @@ public class BeginningFrame extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Lantinghei TC", 0, 15)); // NOI18N
         jLabel3.setText("New? Sign Up.");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -106,7 +107,6 @@ public class BeginningFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ViewControl.OpenNewFrame(this, new LogIn());
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked

@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  */
 public class ViewController {
     
-    public static int userID;
+    public static int userID = -1;
     
     public ViewController()
     {

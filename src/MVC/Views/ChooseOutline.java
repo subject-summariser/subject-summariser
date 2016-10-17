@@ -75,10 +75,10 @@ public class ChooseOutline extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
-        
+
         String ActionCmd = evt.getActionCommand();
         
-        if(ActionCmd.equals("ApproveSelection"))
+        if (ActionCmd.equals("ApproveSelection"))
         {
             String path = jFileChooser1.getSelectedFile().toString();
             System.out.println("File Path: " + path);
@@ -88,8 +88,15 @@ public class ChooseOutline extends javax.swing.JFrame {
                 ViewControl.OpenNewFrame(this, new GenerateSummary3(sos, path));
             }
         }
-        if(ActionCmd.equals("CancelSelection")){
-            ViewControl.OpenNewFrame(this, new BeginningFrame());
+        if (ActionCmd.equals("CancelSelection")){
+            if (ViewControl.getUserID() == -1)
+            {
+                ViewControl.OpenNewFrame(this, new BeginningFrame());
+            }
+            else
+            {
+                ViewControl.OpenNewFrame(this, new UserFiles());
+            }
         }
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 

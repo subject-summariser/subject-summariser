@@ -61,55 +61,56 @@ public class AccountSettings extends javax.swing.JFrame {
 
         jlabel_Welcome_name.setFont(new java.awt.Font("Lantinghei SC", 0, 24)); // NOI18N
         jlabel_Welcome_name.setText("Welcome, ");
-        jPanel1.add(jlabel_Welcome_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
+        jPanel1.add(jlabel_Welcome_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, -1));
 
         jPasswordField1.setFont(new java.awt.Font("Lantinghei SC", 0, 12)); // NOI18N
         jPasswordField1.setText("jPasswordField1");
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 273, -1, -1));
+        jPasswordField1.setPreferredSize(new java.awt.Dimension(40, 25));
+        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 190, -1));
 
         jPasswordField2.setFont(new java.awt.Font("Lantinghei SC", 0, 12)); // NOI18N
         jPasswordField2.setText("jPasswordField2");
-        jPanel1.add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 361, 182, -1));
+        jPanel1.add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 182, -1));
 
         jTextField1.setFont(new java.awt.Font("Lantinghei SC", 0, 14)); // NOI18N
         jTextField1.setText("First Name");
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 156, 194, -1));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 194, -1));
 
         jTextField2.setFont(new java.awt.Font("Lantinghei SC", 0, 14)); // NOI18N
         jTextField2.setText("Surname");
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 195, 194, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 194, -1));
 
         jTextField3.setFont(new java.awt.Font("Lantinghei SC", 0, 14)); // NOI18N
         jTextField3.setText("Email");
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 234, 194, -1));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 194, -1));
 
         jButton1.setFont(new java.awt.Font("Lantinghei SC", 0, 14)); // NOI18N
         jButton1.setText("Save");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 362, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Lantinghei SC", 0, 14)); // NOI18N
         jLabel1.setText("Authenticate changes:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 365, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/llama.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 19, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 251, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Lantinghei SC", 0, 14)); // NOI18N
         jLabel4.setText("First name:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 162, 100, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 100, -1));
 
         jLabel5.setFont(new java.awt.Font("Lantinghei SC", 0, 14)); // NOI18N
         jLabel5.setText("Surname:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 201, 100, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 80, -1));
 
         jLabel6.setFont(new java.awt.Font("Lantinghei SC", 0, 14)); // NOI18N
         jLabel6.setText("Email:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 240, 100, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 100, -1));
 
         jLabel7.setFont(new java.awt.Font("Lantinghei SC", 0, 14)); // NOI18N
         jLabel7.setText("Password:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 277, 100, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 80, -1));
 
         jLabel8.setFont(new java.awt.Font("Lantinghei SC", 0, 13)); // NOI18N
         jLabel8.setText("Upload new");
@@ -118,7 +119,7 @@ public class AccountSettings extends javax.swing.JFrame {
                 jLabel8MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 163, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Lantinghei SC", 0, 13)); // NOI18N
         jLabel9.setText("My Files");
@@ -127,32 +128,32 @@ public class AccountSettings extends javax.swing.JFrame {
                 jLabel9MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 214, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Lantinghei TC", 1, 13)); // NOI18N
         jLabel10.setText("<html>Manage<br>Account</html>");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 260, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/line.png"))); // NOI18N
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 156, -1, -1));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/vertical line.PNG"))); // NOI18N
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, -1, 410));
 
         jLabel12.setFont(new java.awt.Font("Lantinghei SC", 0, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 102, 255));
         jLabel12.setText("Help");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 70, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, -1, -1));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/line horizontal.png"))); // NOI18N
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 650, 10));
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/horizontal line image 2.PNG"))); // NOI18N
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 610, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
         );
 
         pack();
@@ -165,7 +166,7 @@ public class AccountSettings extends javax.swing.JFrame {
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         ViewControl.OpenNewFrame(this, new UserFiles());
     }//GEN-LAST:event_jLabel9MouseClicked
-
+ 
     /**
      * @param args the command line arguments
      */
