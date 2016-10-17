@@ -40,9 +40,10 @@ public class PythonInterface {
                 sos.setSubjectNb(Integer.parseInt(subjStr[0]));
                 sos.setSubjectName(subjStr[1]);
                 break;
-            case ("Contacts"):
+            case ("Contact"):
                 sos.setKeyContacts(splitStr[1]);
                 break;
+            case ("Description"):
             case ("Content"):
                 sos.setSubjectContent(splitStr[1]);
                 break;

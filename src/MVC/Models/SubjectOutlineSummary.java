@@ -5,7 +5,6 @@
  */
 package MVC.Models;
 
-import MVC.Models.Assessment;
 import java.util.LinkedList;
 
 /**
@@ -15,7 +14,34 @@ import java.util.LinkedList;
 public class SubjectOutlineSummary {
     
     private int SubjectNb;
+    private String SubjectName;
+    private String KeyContacts;
+    private String SubjectContent;
+    private LinkedList<Assessment> Assessments;
+    private String MinimumReq;
+    private String SuppAssessments;
+    private String LateAssessmentPenalty;
+    private String ReqTexts;
 
+    public SubjectOutlineSummary()
+    {
+        Assessments = new LinkedList<>();
+        KeyContacts = null;
+        SubjectContent = null;
+        MinimumReq = null;
+        SuppAssessments = null;
+        LateAssessmentPenalty = null;
+        ReqTexts = null;
+    }
+
+    public int getSubjectNb() {
+        return SubjectNb;
+    }
+
+    public String getSubjectName() {
+        return SubjectName;
+    }
+    
     public void setSubjectNb(int SubjectNb) {
         this.SubjectNb = SubjectNb;
     }
@@ -46,45 +72,6 @@ public class SubjectOutlineSummary {
 
     public void setReqTexts(String ReqTexts) {
         this.ReqTexts = ReqTexts;
-    }
-    private String SubjectName;
-    private String KeyContacts;
-    private String SubjectContent;
-    private LinkedList<Assessment> Assessments;
-    private String MinimumReq;
-    private String SuppAssessments;
-    private String LateAssessmentPenalty;
-    private String ReqTexts;
-    
-//    public SubjectOutlineSummary(int subjectNb, String subjectName, String keyContacts,
-//                                 String subjectContent, LinkedList<Assessment> assessments, String minimumReq,
-//                                 String suppAssessments, String lateAssessmentPenalty, String reqTexts)
-    public SubjectOutlineSummary()
-    {
-        Assessments = new LinkedList<>();
-        KeyContacts = null;
-        SubjectContent = null;
-        MinimumReq = null;
-        SuppAssessments = null;
-        LateAssessmentPenalty = null;
-        ReqTexts = null;
-//        SubjectNb = subjectNb;
-//        SubjectName = subjectName;
-//        KeyContacts = keyContacts;
-//        SubjectContent = subjectContent;
-//        Assessments = assessments;
-//        MinimumReq = minimumReq;
-//        SuppAssessments = suppAssessments;
-//        LateAssessmentPenalty = lateAssessmentPenalty;
-//        ReqTexts = reqTexts;
-    }
-
-    public int getSubjectNb() {
-        return SubjectNb;
-    }
-
-    public String getSubjectName() {
-        return SubjectName;
     }
     
     public void setSubjectName(String subjectName) {

@@ -18,16 +18,22 @@ import FileGenerator.ICSGenerator;
 public class GenerateSummary4 extends javax.swing.JFrame {
 
     private final ViewController ViewControl = new ViewController();
-    private final SubjectOutlineSummary SOS;
-    private final String FilePath;
+    private SubjectOutlineSummary SOS = null;
+    private String FilePath = "";
     private boolean[] CheckSelect = new boolean[6];
     
     /**
      * Creates new form GenerateSummary4
      */
+    public GenerateSummary4()
+    {
+    }
+    
     public GenerateSummary4(SubjectOutlineSummary sos, String filePath, boolean[] checkSelect) {
         SOS = sos;
-        FilePath = filePath;
+        if (filePath.endsWith(".pdf")) {
+                FilePath = filePath.substring(0,filePath.length() - 4);
+            }
         CheckSelect = checkSelect;
         initComponents();
     }
@@ -156,7 +162,7 @@ public class GenerateSummary4 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GenerateSummary4(null, "", null).setVisible(true);
+                new GenerateSummary4().setVisible(true);
             }
         });
     }

@@ -15,12 +15,15 @@ import MVC.Controllers.ViewController;
 public class GenerateSummary2 extends javax.swing.JFrame {
     
     private final ViewController ViewControl = new ViewController();
-    private final SubjectOutlineSummary SOS;
-    private final String FilePath;
+    private SubjectOutlineSummary SOS = null;
+    private String FilePath = "";
         
     /**
      * Creates new form GenerateSummary2
      */
+    public GenerateSummary2()
+    {}
+    
     public GenerateSummary2(SubjectOutlineSummary sos, String filepath) {
         
         SOS = sos;
@@ -120,7 +123,7 @@ public class GenerateSummary2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GenerateSummary2(null, "").setVisible(true);
+                new GenerateSummary2().setVisible(true);
             }
         });
     }

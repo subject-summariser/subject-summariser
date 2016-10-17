@@ -16,8 +16,8 @@ public class User {
     private String ID;
     private LinkedList<SubjectOutlineSummary> SOS = new LinkedList<>();
     
-    public User()
+    public User() 
     {
     }
-
+    
 }

@@ -16,14 +16,19 @@ public class GenerateSummary3 extends javax.swing.JFrame {
 
     private final ViewController ViewControl = new ViewController();
         
-    private final SubjectOutlineSummary SOS;
-    private final String FilePath;
+    private SubjectOutlineSummary SOS = null;
+    private String FilePath = "";
     
     private boolean[] CheckSelect = new boolean[6];
     
     /**
      * Creates new form GenerateSummary3
      */
+    public GenerateSummary3()
+    {
+        initComponents();
+    }
+    
     public GenerateSummary3(SubjectOutlineSummary sos, String filePath) {
         SOS = sos;
         FilePath = filePath;
@@ -179,7 +184,7 @@ public class GenerateSummary3 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GenerateSummary3(null, "").setVisible(true);
+                new GenerateSummary3().setVisible(true);
             }
         });
     }
