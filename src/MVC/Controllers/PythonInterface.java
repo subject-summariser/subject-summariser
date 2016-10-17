@@ -43,19 +43,19 @@ public class PythonInterface {
             case ("<Contact"):
                 sos.setKeyContacts(splitStr[1]);
                 break;
-            case ("<Content"):
+            case ("<Topics"):
                 sos.setSubjectContent(splitStr[1]);
                 break;
-            case ("<Minimum requirements"):
+            case ("<Pass Criteria"):
                 sos.setMinimumReq(splitStr[1]);
                 break;
-            case ("<Supplementary assessments"):
+            case ("<Supplementary Assessments"):
                 sos.setSuppAssessments(splitStr[1]);
                 break;
             case ("<Late Penalty"):
                 sos.setLateAssessmentPenalty(splitStr[1]);
                 break;
-            case ("<Required texts"):
+            case ("<Recommended Text"):
                 sos.setReqTexts(splitStr[1]);
                 break;
             case ("<Task"):

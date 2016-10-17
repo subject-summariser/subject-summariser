@@ -59,9 +59,6 @@ public class GenerateSummary4 extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,7 +79,7 @@ public class GenerateSummary4 extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 560, 90, 90));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 90, 90));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/calendar icon.png"))); // NOI18N
         jButton3.setPreferredSize(new java.awt.Dimension(100, 98));
@@ -91,15 +88,15 @@ public class GenerateSummary4 extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 560, 90, 90));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 90, 90));
 
         jLabel2.setFont(new java.awt.Font("Lantinghei TC", 0, 12)); // NOI18N
         jLabel2.setText("Word file");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 650, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Lantinghei TC", 0, 12)); // NOI18N
         jLabel3.setText("Calendar file");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 650, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, -1, -1));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/home icon.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -107,14 +104,14 @@ public class GenerateSummary4 extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 560, 90, 90));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 90, 90));
 
         jLabel8.setFont(new java.awt.Font("Lantinghei TC", 0, 12)); // NOI18N
         jLabel8.setText("Back to Home");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 650, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/Generate box.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 520, 340, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 340, -1));
 
         jLabel5.setFont(new java.awt.Font("Lantinghei SC", 0, 14)); // NOI18N
         jLabel5.setText("Want us to hold on to it? ");
@@ -123,22 +120,12 @@ public class GenerateSummary4 extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 700, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Lantinghei SC", 0, 13)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Lantinghei SC", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 102, 255));
         jLabel6.setText("Sign Up");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 700, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("Lantinghei SC", 0, 14)); // NOI18N
-        jLabel9.setText("Preview");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, -1, -1));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 470, 340));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -217,9 +204,6 @@ public class GenerateSummary4 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
