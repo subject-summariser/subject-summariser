@@ -40,7 +40,7 @@ public class UserFiles extends javax.swing.JFrame {
         }
     }
     
-    public String SubjectNum(){
+    public String SubjectNum(String SOS_ID){
         
         Connection dbConnection = connectToDB();
         String data = "Empty";
@@ -48,7 +48,7 @@ public class UserFiles extends javax.swing.JFrame {
         String rawQuery;
         rawQuery = "Select sos.SUBJECT_NUMBER From OMANYTE.\"USER\" "
                 + "u join OMANYTE.USER_SUBJECTS us on us.ID = u.USER_SUBJECT_ID" +
-                "join OMANYTE.SUBJECT_OUTLINE_SUMMARY sos on us.SOS_ID1 = sos.ID" +
+                "join OMANYTE.SUBJECT_OUTLINE_SUMMARY sos on us."+SOS_ID+ "= sos.ID" +
                 "join OMANYTE.SOS_ASSESSMENT_GROUP sag on sag.ID = sos.ASSESSMENT_GROUP_ID" +
                 "WHERE u.ID ="+ userID;
               
@@ -245,7 +245,7 @@ public class UserFiles extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton1ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jButton1ComponentAdded
-        String subnumber = SubjectNum();
+        String subnumber = SubjectNum("SOS_ID1");
         jButton1.setText("<html>Subject<BR>"+subnumber+"</html>");
     }//GEN-LAST:event_jButton1ComponentAdded
 
