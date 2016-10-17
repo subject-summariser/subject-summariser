@@ -6,6 +6,9 @@
 package MVC.Views;
 
 import MVC.Controllers.ViewController;
+import MVC.Controllers.DatabaseInterface;
+
+import javax.swing.JOptionPane;
 
 import java.awt.event.KeyEvent;
 
@@ -120,7 +123,31 @@ public class SignUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ViewControl.OpenNewFrame(this, new UserFiles());
+        DatabaseInterface aDatabase = new DatabaseInterface();
+        
+        String username = jTextField3.getText();
+        String password = Integer.toString(jTextField2.getText().hashCode());
+        
+        if(username.equals("") || password.equals("0"))
+        {
+            JOptionPane.showMessageDialog(null, "Please fill out all fields");
+        }
+        else
+        {
+            String data[] = aDatabase.selectUser(username, password);
+        
+            if(data[0] == null || data[1] == null)
+            {
+                System.out.println("Login failure...");
+                JOptionPane.showMessageDialog(null, "Incorrect username or password. Please try again.");
+            }
+            else if(data[0].equals(username) && data[1].equals(password))
+            {
+                //get user id and save it somewhere
+                ViewControl.setUserID(Integer.parseInt(data[2])); 
+                ViewControl.OpenNewFrame(this, new GenerateSummary1());
+            }   
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
