@@ -7,13 +7,15 @@ package MVC.Views;
 
 import MVC.Controllers.ViewController;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author darceydahl
  */
 public class SignUp extends javax.swing.JFrame {
 
-    ViewController ViewControl = new ViewController();
+    private final ViewController ViewControl = new ViewController();
     
     /**
      * Creates new form SignUp
@@ -44,6 +46,7 @@ public class SignUp extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jTextField6 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         jTextField1.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
 
@@ -96,6 +99,16 @@ public class SignUp extends javax.swing.JFrame {
         jTextField6.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 150, -1));
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/back icon 3.png"))); // NOI18N
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 20, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,8 +124,19 @@ public class SignUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ViewControl.OpenNewFrame(this, new GenerateSummary1());
+        ViewControl.OpenNewFrame(this, new UserFiles());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            ViewControl.OpenNewFrame(this, new UserFiles());
+        }
+    }//GEN-LAST:event_jButton1KeyPressed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ViewControl.OpenNewFrame(this, new BeginningFrame());
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,6 +175,7 @@ public class SignUp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

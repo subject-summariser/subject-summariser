@@ -6,15 +6,20 @@
 package MVC.Views;
 
 import MVC.Controllers.ViewController;
+import MVC.Controllers.DatabaseInterface;
+
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author darceydahl
  */
 public class LogIn extends javax.swing.JFrame {
-
     
-    ViewController ViewControl = new ViewController();
+    private final ViewController ViewControl = new ViewController();
     /**
      * Creates new form LogIn
      */
@@ -39,6 +44,7 @@ public class LogIn extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,7 +79,22 @@ public class LogIn extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1KeyPressed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 90, 40));
+
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/back icon 3.png"))); // NOI18N
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 20, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,8 +111,41 @@ public class LogIn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ViewControl.OpenNewFrame(this, new GenerateSummary1());
+//        DatabaseInterface aDatabase = new DatabaseInterface();
+        
+//        String data[] = aDatabase.selectUser(jTextField3.getText(), Integer.toString(jPasswordField1.hashCode()));
+//        if(data[0].equals(jTextField3.getText()) && data[1].equals(Integer.toString(jPasswordField1.hashCode())))
+//        {
+            
+            ViewControl.OpenNewFrame(this, new UserFiles());
+//        }
+//        else
+//        {
+            System.out.println("Login failure...");
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+
+//        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+//        {
+//            DatabaseInterface aDatabase = new DatabaseInterface();
+
+//            String data[] = aDatabase.selectUser(jTextField3.getText(), Integer.toString(jPasswordField1.hashCode()));
+//            if(data[0].equals(jTextField3.getText()) && data[1].equals(Integer.toString(jPasswordField1.hashCode())))
+//            {
+                ViewControl.OpenNewFrame(this, new UserFiles());
+//            }
+//            else
+//            {
+//                System.out.println("Login failure...");
+//            }
+//        }
+    }//GEN-LAST:event_jButton1KeyPressed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ViewControl.OpenNewFrame(this, new BeginningFrame());
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,6 +184,7 @@ public class LogIn extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
