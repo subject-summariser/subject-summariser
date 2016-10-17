@@ -13,7 +13,7 @@ import MVC.Controllers.ViewController;
  */
 public class BeginningFrame extends javax.swing.JFrame {
 
-    ViewController ViewControl = new ViewController();
+    private final ViewController ViewControl = new ViewController();
 
     /**
      * Creates new form BeginningFrame

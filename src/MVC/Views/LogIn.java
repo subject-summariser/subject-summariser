@@ -7,6 +7,7 @@ package MVC.Views;
 
 import MVC.Controllers.ViewController;
 import MVC.Controllers.DatabaseInterface;
+
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class LogIn extends javax.swing.JFrame {
     
-    ViewController ViewControl = new ViewController();
+    private final ViewController ViewControl = new ViewController();
     /**
      * Creates new form LogIn
      */

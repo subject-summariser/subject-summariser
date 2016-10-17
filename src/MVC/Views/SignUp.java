@@ -6,6 +6,7 @@
 package MVC.Views;
 
 import MVC.Controllers.ViewController;
+
 import java.awt.event.KeyEvent;
 
 /**
@@ -14,7 +15,7 @@ import java.awt.event.KeyEvent;
  */
 public class SignUp extends javax.swing.JFrame {
 
-    ViewController ViewControl = new ViewController();
+    private final ViewController ViewControl = new ViewController();
     
     /**
      * Creates new form SignUp
@@ -123,10 +124,9 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
-        // TODO add your handling code here:
         if(evt.getKeyCode() == KeyEvent.VK_ENTER)
         {
-            ViewControl.OpenNewFrame(this, new GenerateSummary1());
+            ViewControl.OpenNewFrame(this, new UserFiles());
         }
     }//GEN-LAST:event_jButton1KeyPressed
 

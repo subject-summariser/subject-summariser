@@ -22,8 +22,8 @@ public class PythonInterface {
     private final String scriptFilePath = System.getProperty("user.dir") + "\\src\\PDFParser";
     private final List<String> summary = new ArrayList<>();
     
-    SubjectOutlineSummary sos = new SubjectOutlineSummary();
-    Assessment ass;
+    private SubjectOutlineSummary sos = new SubjectOutlineSummary();
+    private Assessment ass;
         
     public PythonInterface()
     {

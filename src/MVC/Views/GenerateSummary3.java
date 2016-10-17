@@ -14,11 +14,12 @@ import MVC.Controllers.ViewController;
  */
 public class GenerateSummary3 extends javax.swing.JFrame {
 
-    SubjectOutlineSummary SOS;
-    String FilePath;
-    ViewController ViewControl = new ViewController();
+    private final ViewController ViewControl = new ViewController();
+        
+    private final SubjectOutlineSummary SOS;
+    private final String FilePath;
     
-    boolean[] CheckSelect = new boolean[6];
+    private boolean[] CheckSelect = new boolean[6];
     
     /**
      * Creates new form GenerateSummary3

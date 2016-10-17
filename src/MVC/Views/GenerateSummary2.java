@@ -13,9 +13,10 @@ import MVC.Controllers.ViewController;
  * @author Laura Becker
  */
 public class GenerateSummary2 extends javax.swing.JFrame {
-    ViewController ViewControl = new ViewController();
-    SubjectOutlineSummary SOS;
-    String FilePath;
+    
+    private final ViewController ViewControl = new ViewController();
+    private final SubjectOutlineSummary SOS;
+    private final String FilePath;
         
     /**
      * Creates new form GenerateSummary2

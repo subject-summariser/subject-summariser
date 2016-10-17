@@ -7,6 +7,7 @@ package MVC.Views;
 
 import MVC.Models.SubjectOutlineSummary;
 import MVC.Controllers.ViewController;
+
 import FileGenerator.DocGenerator;
 import FileGenerator.ICSGenerator;
 
@@ -16,10 +17,10 @@ import FileGenerator.ICSGenerator;
  */
 public class GenerateSummary4 extends javax.swing.JFrame {
 
-    ViewController ViewControl = new ViewController();
-    SubjectOutlineSummary SOS;
-    String FilePath;
-    boolean[] CheckSelect = new boolean[6];
+    private final ViewController ViewControl = new ViewController();
+    private final SubjectOutlineSummary SOS;
+    private final String FilePath;
+    private boolean[] CheckSelect = new boolean[6];
     
     /**
      * Creates new form GenerateSummary4

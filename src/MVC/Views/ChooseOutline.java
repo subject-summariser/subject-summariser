@@ -15,8 +15,8 @@ import MVC.Controllers.ViewController;
  */
 public class ChooseOutline extends javax.swing.JFrame {
 
-    PythonInterface PythonInterface = new PythonInterface();
-    ViewController ViewControl = new ViewController();
+    private final PythonInterface PythonInterface = new PythonInterface();
+    private final ViewController ViewControl = new ViewController();
     
     /**
      * Creates new form ChooseOutline
