@@ -73,7 +73,6 @@ public class UserFiles extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 163, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Lantinghei SC", 1, 13)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("My Files");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 214, -1, -1));
 

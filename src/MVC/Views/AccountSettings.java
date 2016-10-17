@@ -111,8 +111,13 @@ public class AccountSettings extends javax.swing.JFrame {
         jLabel7.setText("Password:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 277, 100, -1));
 
-        jLabel8.setFont(new java.awt.Font("Lantinghei SC", 1, 13)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Lantinghei SC", 0, 13)); // NOI18N
         jLabel8.setText("Upload new");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 163, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Lantinghei SC", 0, 13)); // NOI18N
@@ -124,8 +129,7 @@ public class AccountSettings extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 214, -1, -1));
 
-        jLabel10.setFont(new java.awt.Font("Lantinghei TC", 0, 13)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel10.setFont(new java.awt.Font("Lantinghei TC", 1, 13)); // NOI18N
         jLabel10.setText("<html>Manage<br>Account</html>");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 260, -1, -1));
 
