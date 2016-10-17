@@ -5,17 +5,35 @@
  */
 package MVC.Views;
 
+import MVC.Models.SubjectOutlineSummary;
+import MVC.Controllers.ViewController;
+
 /**
  *
  * @author Laura Becker
  */
 public class GenerateSummary2 extends javax.swing.JFrame {
-
+    ViewController ViewControl = new ViewController();
+    SubjectOutlineSummary SOS;
+    String FilePath;
+        
     /**
      * Creates new form GenerateSummary2
      */
-    public GenerateSummary2() {
+    public GenerateSummary2(SubjectOutlineSummary sos, String filepath) {
+        
+        SOS = sos;
+        FilePath = filepath;
         initComponents();
+
+        int i;
+        for(i = 0; i < 1000000000; i++)
+        {
+            jProgressBar1.setValue(i);
+        }
+       
+//        this.setVisible(false);
+//        new GenerateSummary3(SOS, FilePath).setVisible(true);
     }
 
     /**
@@ -45,6 +63,9 @@ public class GenerateSummary2 extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Lantinghei TC", 0, 30)); // NOI18N
         jLabel1.setText("Generate a summary");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
+
+        jProgressBar1.setString("");
+        jProgressBar1.setStringPainted(true);
         jPanel1.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 270, 20));
 
         jLabel2.setFont(new java.awt.Font("Lantinghei TC", 0, 16)); // NOI18N
@@ -94,11 +115,11 @@ public class GenerateSummary2 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GenerateSummary2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GenerateSummary2().setVisible(true);
+                new GenerateSummary2(null, "").setVisible(true);
             }
         });
     }

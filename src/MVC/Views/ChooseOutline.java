@@ -6,7 +6,7 @@
 package MVC.Views;
 
 import MVC.Models.SubjectOutlineSummary;
-import MVC.Controllers.PythonJava;
+import MVC.Controllers.PythonInterface;
 import MVC.Controllers.ViewController;
 
 /**
@@ -15,7 +15,7 @@ import MVC.Controllers.ViewController;
  */
 public class ChooseOutline extends javax.swing.JFrame {
 
-    PythonJava PythonInterface = new PythonJava();
+    PythonInterface PythonInterface = new PythonInterface();
     ViewController ViewControl = new ViewController();
     
     /**

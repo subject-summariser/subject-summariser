@@ -5,9 +5,8 @@
  */
 package MVC.Views;
 
-import MVC.Controllers.DatabaseInterface;
 import MVC.Controllers.ViewController;
-import javax.swing.JOptionPane;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -16,7 +15,6 @@ import javax.swing.JOptionPane;
 public class SignUp extends javax.swing.JFrame {
 
     ViewController ViewControl = new ViewController();
-    DatabaseInterface databaseInterface = new DatabaseInterface();
     
     /**
      * Creates new form SignUp
@@ -44,9 +42,9 @@ public class SignUp extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jTextField6 = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         jTextField1.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
 
@@ -84,9 +82,6 @@ public class SignUp extends javax.swing.JFrame {
         jTextField3.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 150, -1));
 
-        jTextField5.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 150, -1));
-
         jButton1.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
         jButton1.setText("Sign Up");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -94,10 +89,20 @@ public class SignUp extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1KeyPressed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, -1, -1));
 
         jTextField6.setFont(new java.awt.Font("Lantinghei TC", 0, 14)); // NOI18N
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 150, -1));
+
+        jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.setMinimumSize(new java.awt.Dimension(6, 25));
+        jPasswordField1.setPreferredSize(new java.awt.Dimension(6, 25));
+        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 150, 25));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,37 +119,16 @@ public class SignUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String firstName = jTextField2.getText();
-        String lastName = jTextField3.getText();
-        String email = jTextField6.getText();
-        String password = Integer.toString(jTextField5.getText().hashCode());
-        
-        if(firstName.equals(null) || lastName.equals(null) || email.equals(null) || password.equals("0"))
-        {
-            JOptionPane.showMessageDialog(null, "Please fill out all fields.");
-        }
-        else
-        {
-            if(databaseInterface.checkDuplicateEmail(email))
-            {
-                if(databaseInterface.executeUserRegistration(firstName, lastName, true, email, 99999, password))
-                {
-                    ViewControl.OpenNewFrame(this, new GenerateSummary1());   
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "Unable to connect to create user. Please try again.");
-                }         
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Email already in use.");
-            }            
-        }
-
-        
-
+        ViewControl.OpenNewFrame(this, new GenerateSummary1());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            ViewControl.OpenNewFrame(this, new GenerateSummary1());
+        }
+    }//GEN-LAST:event_jButton1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -190,10 +174,10 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
