@@ -102,6 +102,7 @@ public final class DatabaseInterface {
         String rawQuery = "SELECT * FROM OMANYTE.\"USER\" WHERE EMAIL LIKE '" + email + "'";
         ResultSet emailData;
         
+        
         try
         {
             PreparedStatement selectEmail = dbConnection.prepareStatement(rawQuery);

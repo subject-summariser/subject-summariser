@@ -6,6 +6,11 @@
 package MVC.Views;
 
 import MVC.Controllers.ViewController;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+
 
 /**
  *
@@ -14,10 +19,70 @@ import MVC.Controllers.ViewController;
 public class UserFiles extends javax.swing.JFrame {
 
     private final ViewController ViewControl = new ViewController();
-    
+    //private static final String SQLQuery = null;
+    int userID = ViewControl.getUserID();
+    private final String connectionString = "jdbc:derby://localhost:1527/sos_db;create=true;user=omanyte;password=bake";
     /**
-     * Creates new form UserFiles
+     * Creates new form UserFilpes
      */
+    
+    private Connection connectToDB(){
+        try
+        {
+           Connection dbConnection = DriverManager.getConnection(connectionString);
+           System.out.println("Connection to database successful!");
+           return dbConnection;
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Failure connecting to database: " + e.getSQLState() + " " + e);
+            return null;
+        }
+    }
+    
+    public String SubjectNum(){
+        
+        Connection dbConnection = connectToDB();
+        String data = "Empty";
+        ResultSet loginData;
+        String rawQuery;
+        rawQuery = "Select sos.SUBJECT_NUMBER From OMANYTE.\"USER\" "
+                + "u join OMANYTE.USER_SUBJECTS us on us.ID = u.USER_SUBJECT_ID" +
+                "join OMANYTE.SUBJECT_OUTLINE_SUMMARY sos on us.SOS_ID1 = sos.ID" +
+                "join OMANYTE.SOS_ASSESSMENT_GROUP sag on sag.ID = sos.ASSESSMENT_GROUP_ID" +
+                "WHERE u.ID ="+ userID;
+              
+            return data;
+    }
+    
+    public String[] SubjectInfo(){
+        
+        Connection dbConnection = connectToDB();
+        String data[] = null;
+        ResultSet loginData;
+        String rawQuery;
+        rawQuery = "Select sos.* From OMANYTE.\"USER\" "
+                + "u join OMANYTE.USER_SUBJECTS us on us.ID = u.USER_SUBJECT_ID" +
+                "join OMANYTE.SUBJECT_OUTLINE_SUMMARY sos on us.SOS_ID1 = sos.ID" +
+                "join OMANYTE.SOS_ASSESSMENT_GROUP sag on sag.ID = sos.ASSESSMENT_GROUP_ID" +
+                "WHERE u.ID ="+ userID;
+              
+    return data;
+    }
+    
+    private void disconnectFromDB(Connection dbConnection)
+    {
+        try
+        {
+            dbConnection.close();
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Failure trying to disconnect: " + e.getSQLState());
+        }
+    }
+
+    
     public UserFiles() {
         initComponents();
     }
@@ -31,12 +96,11 @@ public class UserFiles extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -46,6 +110,31 @@ public class UserFiles extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jTextArea2.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jTextArea2ComponentShown(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTextArea2);
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,23 +143,6 @@ public class UserFiles extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/llama.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
-
-        jScrollPane1.setBackground(new java.awt.Color(204, 204, 204));
-        jScrollPane1.setBorder(null);
-        jScrollPane1.setForeground(new java.awt.Color(204, 204, 204));
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        jScrollPane1.setHorizontalScrollBar(null);
-
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/document icon.png"))); // NOI18N
-        jScrollPane1.setViewportView(jLabel11);
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/document icon.png"))); // NOI18N
-        jScrollPane1.setViewportView(jLabel8);
-
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/document icon.png"))); // NOI18N
-        jScrollPane1.setViewportView(jLabel12);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 530, 290));
 
         jLabel2.setFont(new java.awt.Font("Lantinghei SC", 0, 24)); // NOI18N
         jLabel2.setText("Welcome, ");
@@ -116,6 +188,36 @@ public class UserFiles extends javax.swing.JFrame {
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/horizontal line image 2.PNG"))); // NOI18N
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 610, 10));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/document icon.png"))); // NOI18N
+        jButton1.setText("<html>SEP<BR>48430</html>");
+        jButton1.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                jButton1ComponentAdded(evt);
+            }
+        });
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, -1, -1));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/document icon.png"))); // NOI18N
+        jButton2.setText("Empty");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, -1, -1));
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/document icon.png"))); // NOI18N
+        jButton3.setText("Empty");
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, -1, -1));
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/document icon.png"))); // NOI18N
+        jButton4.setText("Empty");
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, -1, -1));
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MVC/Views/Images/document icon.png"))); // NOI18N
+        jButton5.setText("Empty");
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -137,6 +239,27 @@ public class UserFiles extends javax.swing.JFrame {
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         ViewControl.OpenNewFrame(this, new AccountSettings());
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        jDialog1.setVisible(true);
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton1ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jButton1ComponentAdded
+        String subnumber = SubjectNum();
+        jButton1.setText("<html>Subject<BR>"+subnumber+"</html>");
+    }//GEN-LAST:event_jButton1ComponentAdded
+
+    private void jTextArea2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTextArea2ComponentShown
+        String s[] = SubjectInfo();
+        String line="";
+        if (SubjectInfo() != null) {           
+            for (int i=0; 0< SubjectInfo().length;i++){          
+                line += s[i]+ "\n";
+            }
+        }
+        else line ="No info for Subject Outline.";
+        jTextArea2.setText(line);
+    }//GEN-LAST:event_jTextArea2ComponentShown
 
     /**
      * @param args the command line arguments
@@ -174,20 +297,24 @@ public class UserFiles extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
 }
